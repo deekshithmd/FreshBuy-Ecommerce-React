@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
     <div className="card-container vertical" key={product.id}>

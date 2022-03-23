@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
         navigate("/signup");
       }
     })();
-  }, []);
+  }, [navigate]);
 
   return (
     <AuthContext.Provider value={{ token, setToken }}>

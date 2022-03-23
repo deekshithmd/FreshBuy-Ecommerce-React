@@ -4,7 +4,7 @@ import { getProducts } from "../../services";
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
-  const token = localStorage.getItem("login");
+  //const token = localStorage.getItem("login");
 
   const [data, dispatch] = useReducer(DataReducer, {
     products: [],
