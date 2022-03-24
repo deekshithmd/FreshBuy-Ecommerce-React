@@ -10,7 +10,7 @@ export const getWishlist = async ({ encodedToken }) =>
   });
 
 export const addWishlist = async ({ product, encodedToken }) =>
-  await axios.get(
+  await axios.post(
     `/api/user/wishlist`,
     { product },
     {
@@ -34,7 +34,7 @@ export const getCartlist = async ({ encodedToken }) =>
   });
 
 export const addCartlist = async ({ product, encodedToken }) =>
-  await axios.get(
+  await axios.post(
     `/api/user/cart`,
     { product },
     {
@@ -63,3 +63,5 @@ export const editCartlist = async ({ productId, encodedToken, type }) =>
       },
     }
   );
+
+export const getCategories = async () => axios.get("/api/categories");
