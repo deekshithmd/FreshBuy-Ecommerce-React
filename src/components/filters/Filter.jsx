@@ -1,7 +1,7 @@
 import "./filter.css";
 import { useData } from "../../contexts";
 export default function Filter() {
-  const { data, dispatch } = useData();
+  const { data } = useData();
   return (
     <div className="filter-section">
       <section className="filter-headings">
