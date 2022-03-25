@@ -6,8 +6,10 @@ import {
   editCartlist,
 } from "../../services";
 import { useData } from "../../contexts";
+
 export default function Wishlist() {
   const { data, dispatch, token } = useData();
+
   async function addCart(product, tokens) {
     const responsew = await getCartlist({ encodedToken: tokens });
     if (!responsew.data.cart.find((item) => item._id === product._id)) {
@@ -22,6 +24,7 @@ export default function Wishlist() {
       dispatch({ type: "LOAD_CART", payload: res.data.cart });
     }
   }
+  
   async function deleteWish(productid, tokens) {
     const responsewishlist = await deleteWishlist({
       productId: productid,

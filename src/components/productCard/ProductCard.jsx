@@ -8,6 +8,7 @@ import {
   addWishlist,
   deleteWishlist,
 } from "../../services";
+
 const ProductCard = ({ product }) => {
   const { data, dispatch, token } = useData();
 
@@ -71,7 +72,6 @@ const ProductCard = ({ product }) => {
             ></i>
           </span>
         </h2>
-        {/* <p className="card-sub-heading">{product.description}</p> */}
         <div className="rating text-sm">
           <span className="rating-value">
             {product.rating}

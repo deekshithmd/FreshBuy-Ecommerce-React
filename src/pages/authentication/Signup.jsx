@@ -25,7 +25,7 @@ export default function Signup() {
       }
     } catch (e) {
       console.log(e);
-      console.log("signup")
+      console.log("signup");
     }
   };
 

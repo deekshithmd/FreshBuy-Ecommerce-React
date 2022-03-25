@@ -6,6 +6,7 @@ import {
   deleteCartlist,
   editCartlist,
 } from "../../services";
+
 export default function Cart() {
   const { data, dispatch, token } = useData();
 
@@ -66,11 +67,13 @@ export default function Cart() {
                     <span>
                       <i
                         className="far fa-heart"
-                        onClick={() => {addWish(item, token);deleteCart(item._id,token)}}
+                        onClick={() => {
+                          addWish(item, token);
+                          deleteCart(item._id, token);
+                        }}
                       ></i>
                     </span>
                   </h2>
-                  {/* <p className="card-sub-heading">{item.description}</p> */}
                   <div className="rating text-sm">
                     <span className="rating-value">
                       {item.rating}
@@ -103,7 +106,12 @@ export default function Cart() {
                       -
                     </button>
                   </span>
-                  <button className="btn btn-outline-primary" onClick={() => deleteCart(item._id, token)}>Remove</button>
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => deleteCart(item._id, token)}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             );
