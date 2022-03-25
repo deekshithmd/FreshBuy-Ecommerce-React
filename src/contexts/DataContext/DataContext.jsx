@@ -44,7 +44,7 @@ const DataProvider = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, dispatch }}>
+    <DataContext.Provider value={{ data, dispatch,token }}>
       {children}
     </DataContext.Provider>
   );

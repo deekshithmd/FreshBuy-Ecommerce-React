@@ -66,7 +66,7 @@ export default function Cart() {
                     <span>
                       <i
                         className="far fa-heart"
-                        onClick={() => addWish(item, token)}
+                        onClick={() => {addWish(item, token);deleteCart(item._id,token)}}
                       ></i>
                     </span>
                   </h2>
@@ -95,7 +95,7 @@ export default function Cart() {
                     >
                       +
                     </button>
-                    <div className="count">{item.itemCounter}</div>
+                    <div className="count">{item.qty}</div>
                     <button
                       className="dec"
                       onClick={() => decrementCart(item, token)}
