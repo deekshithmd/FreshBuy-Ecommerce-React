@@ -17,9 +17,9 @@ const ProductCard = ({ product }) => {
     : "far fa-heart";
 
   async function addWish(product, tokens) {
-    const responsewishlist = await getWishlist({ encodedToken: tokens });
+    const responseWishlist = await getWishlist({ encodedToken: tokens });
     if (
-      !responsewishlist.data.wishlist.find((item) => item._id === product._id)
+      !responseWishlist.data.wishlist.find((item) => item._id === product._id)
     ) {
       const res = await addWishlist({ product: product, encodedToken: tokens });
       dispatch({ type: "LOAD_WISHLIST", payload: res.data.wishlist });
@@ -27,19 +27,19 @@ const ProductCard = ({ product }) => {
   }
 
   async function deleteWish(productid, tokens) {
-    const responsewishlist = await deleteWishlist({
+    const responseWishlist = await deleteWishlist({
       productId: productid,
       encodedToken: tokens,
     });
     dispatch({
       type: "LOAD_WISHLIST",
-      payload: responsewishlist.data.wishlist,
+      payload: responseWishlist.data.wishlist,
     });
   }
 
   async function addCart(product, tokens) {
-    const responsew = await getCartlist({ encodedToken: tokens });
-    if (!responsew.data.cart.find((item) => item._id === product._id)) {
+    const responseCart = await getCartlist({ encodedToken: tokens });
+    if (!responseCart.data.cart.find((item) => item._id === product._id)) {
       const res = await addCartlist({ product: product, encodedToken: tokens });
       dispatch({ type: "LOAD_CART", payload: res.data.cart });
     } else {
@@ -48,7 +48,6 @@ const ProductCard = ({ product }) => {
         encodedToken: tokens,
         type: "increment",
       });
-      console.log(res.data.cart);
       dispatch({ type: "LOAD_CART", payload: res.data.cart });
     }
   }

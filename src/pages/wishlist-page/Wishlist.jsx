@@ -11,8 +11,8 @@ export default function Wishlist() {
   const { data, dispatch, token } = useData();
 
   async function addCart(product, tokens) {
-    const responsew = await getCartlist({ encodedToken: tokens });
-    if (!responsew.data.cart.find((item) => item._id === product._id)) {
+    const responseWishlist = await getCartlist({ encodedToken: tokens });
+    if (!responseWishlist.data.cart.find((item) => item._id === product._id)) {
       const res = await addCartlist({ product: product, encodedToken: tokens });
       dispatch({ type: "LOAD_CART", payload: res.data.cart });
     } else {
@@ -24,15 +24,15 @@ export default function Wishlist() {
       dispatch({ type: "LOAD_CART", payload: res.data.cart });
     }
   }
-  
+
   async function deleteWish(productid, tokens) {
-    const responsewishlist = await deleteWishlist({
+    const responseWishlist = await deleteWishlist({
       productId: productid,
       encodedToken: tokens,
     });
     dispatch({
       type: "LOAD_WISHLIST",
-      payload: responsewishlist.data.wishlist,
+      payload: responseWishlist.data.wishlist,
     });
   }
 
@@ -80,7 +80,7 @@ export default function Wishlist() {
                   <button className="btn btn-icon-text-primary-outline">
                     <span
                       className="btn-icon text-md"
-                      onClick={() => addCart(item, token)}
+                      onClick={() => {addCart(item, token);deleteWish(item._id, token)}}
                     >
                       Move to Basket
                     </span>

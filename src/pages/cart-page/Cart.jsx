@@ -11,28 +11,28 @@ export default function Cart() {
   const { data, dispatch, token } = useData();
 
   async function incrementCart(product, tokens) {
-    const res = await editCartlist({
+    const responseCart = await editCartlist({
       productId: product._id,
       encodedToken: tokens,
       type: "increment",
     });
-    console.log(res.data.cart);
-    dispatch({ type: "LOAD_CART", payload: res.data.cart });
+    console.log(responseCart.data.cart);
+    dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
   }
 
   async function decrementCart(product, tokens) {
-    const res = await editCartlist({
+    const responseCart = await editCartlist({
       productId: product._id,
       encodedToken: tokens,
       type: "decrement",
     });
-    dispatch({ type: "LOAD_CART", payload: res.data.cart });
+    dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
   }
 
   async function addWish(product, tokens) {
-    const responsewishlist = await getWishlist({ encodedToken: tokens });
+    const responseWishlist = await getWishlist({ encodedToken: tokens });
     if (
-      !responsewishlist.data.wishlist.find((item) => item._id === product._id)
+      !responseWishlist.data.wishlist.find((item) => item._id === product._id)
     ) {
       const res = await addWishlist({ product: product, encodedToken: tokens });
       dispatch({ type: "LOAD_WISHLIST", payload: res.data.wishlist });
@@ -40,11 +40,11 @@ export default function Cart() {
   }
 
   async function deleteCart(productid, tokens) {
-    const responsecartlist = await deleteCartlist({
+    const responseCartlist = await deleteCartlist({
       productId: productid,
       encodedToken: tokens,
     });
-    dispatch({ type: "LOAD_CART", payload: responsecartlist.data.cart });
+    dispatch({ type: "LOAD_CART", payload: responseCartlist.data.cart });
   }
 
   return (
