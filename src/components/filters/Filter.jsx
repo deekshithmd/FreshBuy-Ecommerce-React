@@ -1,5 +1,7 @@
 import "./filter.css";
+import { useData } from "../../contexts";
 export default function Filter() {
+  const { data } = useData();
   return (
     <div className="filter-section">
       <section className="filter-headings">
@@ -13,30 +15,14 @@ export default function Filter() {
         <span className="range-value text-md text-bold">100</span>
       </div>
       <p className="text-md text-bold">Categories</p>
-      <label className="text-md">
-        <input type="checkbox" className="margin-r" />
-        Leafy green
-      </label>
-      <label className="text-md">
-        <input type="checkbox" className="margin-r" />
-        Marrow
-      </label>
-      <label className="text-md">
-        <input type="checkbox" className="margin-r" />
-        Root
-      </label>
-      <label className="text-md">
-        <input type="checkbox" className="margin-r" />
-        Allium
-      </label>
-      <label className="text-md">
-        <input type="checkbox" className="margin-r" />
-        Cruciferous
-      </label>
-      <label className="text-md">
-        <input type="checkbox" className="margin-r" />
-        Fruits
-      </label>
+      {data.categories.map((item) => {
+        return (
+          <label className="text-md" key={item._id}>
+            <input type="checkbox" className="margin-r" />
+            {item.categoryName}
+          </label>
+        );
+      })}
       <p className="text-md text-bold">Ratings</p>
       <label className="text-md">
         <input type="radio" name="rating" className="margin-r" />4 Stars & above

@@ -1,13 +1,59 @@
 import "./cart.css";
 import { useData } from "../../contexts";
+import {
+  getWishlist,
+  addWishlist,
+  deleteCartlist,
+  editCartlist,
+} from "../../services";
+
 export default function Cart() {
-  const { data } = useData();
+  const { data, dispatch, token } = useData();
+
+  async function incrementCart(product, tokens) {
+    const responseCart = await editCartlist({
+      productId: product._id,
+      encodedToken: tokens,
+      type: "increment",
+    });
+    console.log(responseCart.data.cart);
+    dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
+  }
+
+  async function decrementCart(product, tokens) {
+    const responseCart = await editCartlist({
+      productId: product._id,
+      encodedToken: tokens,
+      type: "decrement",
+    });
+    dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
+  }
+
+  async function addWish(product, tokens) {
+    const responseWishlist = await getWishlist({ encodedToken: tokens });
+    if (
+      !responseWishlist.data.wishlist.find((item) => item._id === product._id)
+    ) {
+      const res = await addWishlist({ product: product, encodedToken: tokens });
+      dispatch({ type: "LOAD_WISHLIST", payload: res.data.wishlist });
+    }
+  }
+
+  async function deleteCart(productid, tokens) {
+    const responseCartlist = await deleteCartlist({
+      productId: productid,
+      encodedToken: tokens,
+    });
+    dispatch({ type: "LOAD_CART", payload: responseCartlist.data.cart });
+  }
+
   return (
     <div className="grid-container">
       <div className="cart-products">
         <section className="cart-items">
           <p className="product-page-heading text-lg text-bold">
-            <span className="no-items-in-cart">5</span> Products in your Basket
+            <span className="no-items-in-cart">{data.cart.length}</span>{" "}
+            Products in your Basket
           </p>
           {data.cart.map((item) => {
             return (
@@ -19,10 +65,15 @@ export default function Cart() {
                   <h2 className="card-heading">
                     {item.title}
                     <span>
-                      <i className="far fa-heart"></i>
+                      <i
+                        className="far fa-heart"
+                        onClick={() => {
+                          addWish(item, token);
+                          deleteCart(item._id, token);
+                        }}
+                      ></i>
                     </span>
                   </h2>
-                  {/* <p className="card-sub-heading">{item.description}</p> */}
                   <div className="rating text-sm">
                     <span className="rating-value">
                       {item.rating}
@@ -41,11 +92,26 @@ export default function Cart() {
                   </h4>
                   <span className="qty-scale text-md">
                     Quantity:
-                    <button className="inc">+</button>
-                    <div className="count">{item.itemCounter}</div>
-                    <button className="dec">-</button>
+                    <button
+                      className="inc"
+                      onClick={() => incrementCart(item, token)}
+                    >
+                      +
+                    </button>
+                    <div className="count">{item.qty}</div>
+                    <button
+                      className="dec"
+                      onClick={() => decrementCart(item, token)}
+                    >
+                      -
+                    </button>
                   </span>
-                  <button className="btn btn-outline-primary">Remove</button>
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => deleteCart(item._id, token)}
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             );
