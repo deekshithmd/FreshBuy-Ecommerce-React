@@ -16,7 +16,6 @@ export default function Cart() {
       encodedToken: tokens,
       type: "increment",
     });
-    console.log(responseCart.data.cart);
     dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
   }
 
@@ -57,7 +56,7 @@ export default function Cart() {
           </p>
           {data.cart.map((item) => {
             return (
-              <div className="card-container horizontal">
+              <div className="card-container horizontal" key={item._id}>
                 <div className="card-img horizontal-img border-right">
                   <img src={item.image} alt="Apple" />
                 </div>
