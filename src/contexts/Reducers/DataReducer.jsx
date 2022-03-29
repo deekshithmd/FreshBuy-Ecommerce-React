@@ -8,6 +8,8 @@ export const DataReducer = (state, action) => {
       return { ...state, cart: action.payload };
     case "LOAD_CATEGORY":
       return { ...state, categories: action.payload };
+    case "LOGOUT":
+      return {...state,wishlist:[],cart:[]}
     default:
       return state;
   }

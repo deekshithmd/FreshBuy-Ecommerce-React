@@ -4,12 +4,13 @@ import { useAuth } from "../../contexts";
 import { useData } from "../../contexts";
 export default function Navigation() {
   const navigate = useNavigate();
-  const {data}=useData()
+  const {data,dispatch}=useData()
   const { token, setToken } = useAuth();
   const LogoutHandler = () => {
     localStorage.removeItem("login");
     setToken(false);
     navigate("/");
+    dispatch({type:"LOGOUT"})
   };
   return (
     <nav className="navigation-bar">
