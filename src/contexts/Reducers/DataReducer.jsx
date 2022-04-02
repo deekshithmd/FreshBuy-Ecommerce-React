@@ -26,6 +26,12 @@ export const DataReducer = (state, action) => {
       return { ...state, marrow: !state.marrow };
     case "LEAFY":
       return { ...state, leafy: !state.leafy };
+    case "ALLTIME":
+      return { ...state, alltime: !state.alltime };
+    case "SUMMER":
+      return { ...state, summer: !state.summer };
+    case "WINTER":
+      return { ...state, winter: !state.winter };
     case "CLEAR":
       return {
         ...state,
@@ -38,6 +44,9 @@ export const DataReducer = (state, action) => {
         leafy: false,
         marrow: false,
         root: false,
+        alltime: false,
+        summer: false,
+        winter: false,
       };
     case "LOGOUT":
       return { ...state, wishlist: [], cart: [] };

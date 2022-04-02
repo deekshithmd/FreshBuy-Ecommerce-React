@@ -83,7 +83,7 @@ export default function Navigation() {
           </li>
         )}
         <li className="list-inline-item">
-          <Link to="" className="nav-icon-link link-style-none">
+          <span className="nav-icon-link link-style-none">
             <i
               className={
                 theme === "light"
@@ -92,7 +92,7 @@ export default function Navigation() {
               }
               onClick={() => Toggle()}
             ></i>
-          </Link>
+          </span>
         </li>
       </ul>
     </nav>
