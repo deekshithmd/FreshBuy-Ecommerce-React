@@ -58,7 +58,7 @@ const DataProvider = ({ children }) => {
   const priceFiltered =
     data.price === 200
       ? data.products
-      : data.products.filter((item) => parseInt(item.price) < parseInt(data.price));
+      : data.products.filter((item) => parseInt(item.price) <= parseInt(data.price));
 
   const category =
     data.allium ||
