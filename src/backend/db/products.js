@@ -9,7 +9,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Apple",
-    category: "fruit",
+    categoryName: "Fruit",
     rating: 4.5,
     discount: 20,
     price: 100,
@@ -19,7 +19,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Onion",
-    category: "allium",
+    categoryName: "Allium",
     rating: 2.5,
     discount: 10,
     price: 150,
@@ -30,7 +30,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Garlic",
-    category: "allium",
+    categoryName: "Allium",
     rating: 4.0,
     discount: 30,
     price: 160,
@@ -41,7 +41,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Brocolli",
-    category: "cruciferous",
+    categoryName: "Cruciferous",
     rating: 3.2,
     price: 110,
     discount: 20,
@@ -52,7 +52,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Cualiflower",
-    category: "cruciferous",
+    categoryName: "Cruciferous",
     rating: 3.5,
     price: 140,
     discount: 30,
@@ -63,7 +63,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Pinapple",
-    category: "fruit",
+    categoryName: "Fruit",
     rating: 3.5,
     discount: 30,
     price: 190,
@@ -74,7 +74,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Mint",
-    category: "leafy",
+    categoryName: "Leafy",
     rating: 4.1,
     discount: 10,
     price: 100,
@@ -85,7 +85,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Spinach",
-    category: "leafy",
+    categoryName: "Leafy",
     rating: 2.1,
     discount: 10,
     price: 190,
@@ -96,7 +96,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Pumpkin",
-    category: "marrow",
+    categoryName: "Marrow",
     rating: 4.3,
     discount: 20,
     price: 110,
@@ -107,7 +107,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Cucumber",
-    category: "marrow",
+    categoryName: "Marrow",
     rating: 4.8,
     discount: 10,
     price: 170,
@@ -118,7 +118,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Beetroot",
-    category: "root",
+    categoryName: "Root",
     rating: 1.5,
     discount: 30,
     price: 120,
@@ -129,7 +129,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Strawberry",
-    category: "fruit",
+    categoryName: "Fruit",
     rating: 4.2,
     discount: 20,
     price: 190,

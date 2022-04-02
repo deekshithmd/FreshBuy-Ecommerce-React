@@ -46,7 +46,7 @@ export default function Wishlist() {
         <div className="wishlist-items">
           {data.wishlist.map((item) => {
             return (
-              <div className="card-container vertical">
+              <div className="card-container vertical" key={item._id}>
                 <div className="card-img vertical-img border-bottom">
                   <img src={item.image} alt="Apple" />
                 </div>
@@ -80,7 +80,10 @@ export default function Wishlist() {
                   <button className="btn btn-icon-text-primary-outline">
                     <span
                       className="btn-icon text-md"
-                      onClick={() => {addCart(item, token);deleteWish(item._id, token)}}
+                      onClick={() => {
+                        addCart(item, token);
+                        deleteWish(item._id, token);
+                      }}
                     >
                       Move to Basket
                     </span>
