@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
 import { useData } from "../../contexts";
+import { useTheme } from "../../contexts";
 
 export default function Navigation() {
   const navigate = useNavigate();
+  const { theme, Toggle } = useTheme();
   const { data, dispatch } = useData();
   const { token, setToken } = useAuth();
 
@@ -82,7 +84,14 @@ export default function Navigation() {
         )}
         <li className="list-inline-item">
           <Link to="" className="nav-icon-link link-style-none">
-            <i className="fas fa-sun nav-icon dark"></i>
+            <i
+              className={
+                theme === "light"
+                  ? "fas fa-sun nav-icon"
+                  : "fas fa-moon nav-icon"
+              }
+              onClick={() => Toggle()}
+            ></i>
           </Link>
         </li>
       </ul>
