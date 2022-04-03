@@ -10,9 +10,10 @@ import {
 } from "../../services";
 
 const ProductCard = ({ product }) => {
-  const { data, dispatch, token } = useData();
+  const { data, dispatch } = useData();
+  const token=localStorage.getItem("login")
 
-  const wish = data.wishlist.some((item) => item._id === product._id)
+  const wish = data.wishlist.some((item) => item.title === product.title)
     ? "fas fa-heart wishlisted"
     : "far fa-heart";
 
@@ -85,7 +86,7 @@ const ProductCard = ({ product }) => {
           </span>
           <span className="discount-percentage">{product.discount}% off</span>
         </h4>
-        {data.cart.some((item) => item._id === product._id) ? (
+        {data.cart.some((item) => item.title === product.title) ? (
           <Link to="/cart">
             <button className="btn btn-icon-text-primary-outline">
               <span className="btn-icon">

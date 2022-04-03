@@ -53,7 +53,7 @@ export default function Filter() {
           name="seasonal"
           className="margin-r"
           checked={data.alltime === true}
-          onClick={() => dispatch({ type: "ALLTIME" })}
+          onChange={() => dispatch({ type: "ALLTIME" })}
         />
         All Time
       </label>
@@ -63,7 +63,7 @@ export default function Filter() {
           name="seasonal"
           className="margin-r"
           checked={data.summer === true}
-          onClick={() => dispatch({ type: "SUMMER" })}
+          onChange={() => dispatch({ type: "SUMMER" })}
         />
         Summer
       </label>
@@ -73,7 +73,7 @@ export default function Filter() {
           name="seasonal"
           className="margin-r"
           checked={data.winter === true}
-          onClick={() => dispatch({ type: "WINTER" })}
+          onChange={() => dispatch({ type: "WINTER" })}
         />
         Winter
       </label>

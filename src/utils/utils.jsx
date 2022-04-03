@@ -1,7 +1,7 @@
 export const getCredentials = (email, password) => {
-  if (email.value && password.value) {
-    return { email: email.value, password: password.value };
-  } else {
-    return { email: "adarshbalika@gmail.com", password: "adarshbalika" };
-  }
+  return { email: email.value, password: password.value };
+};
+
+export const getTestData = () => {
+  return { email: "adarshbalika@gmail.com", password: "adarshbalika" };
 };

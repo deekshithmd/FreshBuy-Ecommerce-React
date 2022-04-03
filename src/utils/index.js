@@ -1,2 +1,3 @@
 import { getCredentials } from "./utils";
-export {getCredentials}
+import { getTestData } from "./utils";
+export { getCredentials, getTestData };

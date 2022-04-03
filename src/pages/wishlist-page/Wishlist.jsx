@@ -36,7 +36,7 @@ export default function Wishlist() {
     });
   }
 
-  return (
+  return data.wishlist.length > 0 ? (
     <div className="grid-container">
       <div className="wishlist-products">
         <p className="product-page-heading text-md text-bold">
@@ -69,7 +69,7 @@ export default function Wishlist() {
                     (<span className="rating-number">2333</span>)
                   </div>
                   <h4 className="product-price">
-                    Rs.{item.price}{" "}
+                    Rs.{item.price}/kg{" "}
                     <span className="original-price text-strike-through">
                       Rs.{item.price * 1.2}
                     </span>
@@ -95,5 +95,9 @@ export default function Wishlist() {
         </div>
       </div>
     </div>
+  ) : (
+    <p className="product-page-heading text-lg text-bold">
+      No product wishlisted
+    </p>
   );
 }

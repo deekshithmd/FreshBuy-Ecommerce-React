@@ -1,5 +1,5 @@
 import "./authentication.css";
-import { getCredentials } from "../../utils/utils";
+import { getCredentials,getTestData } from "../../utils";
 import axios from "axios";
 import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,28 @@ export default function Login() {
   const { setToken } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+
+  const TestLogin=async()=>{
+    try{
+      const response = await axios.post(
+        "/api/auth/login",
+        getTestData()
+      );
+      console.log(response.data);
+      if (response.data.encodedToken) {
+        localStorage.setItem(
+          "login",
+          JSON.stringify(response.data.encodedToken)
+        );
+        setToken(true);
+        navigate("/");
+      }
+    }
+    catch(e){
+      setError(true)
+      navigate("/login");
+    }
+  }
 
   const HandleLogin = async (event) => {
     try {
@@ -77,10 +99,13 @@ export default function Login() {
             </section>
             <input
               type="submit"
-              className="btn btn-solid-primary margin"
+              className="btn btn-solid-primary auth-btn margin margiin-l-3-5"
               value="Login"
             />
           </form>
+          <button className="btn btn-solid-primary auth-btn margin" onClick={()=>TestLogin()}>
+            Test User Login
+          </button>
           <p className="text-lg">
             <Link to="/signup" className=" link-style-none">
               Create New Account?

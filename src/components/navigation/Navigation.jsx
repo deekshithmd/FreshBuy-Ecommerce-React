@@ -12,6 +12,8 @@ export default function Navigation() {
 
   const LogoutHandler = () => {
     localStorage.removeItem("login");
+    localStorage.removeItem("cart")
+    localStorage.removeItem("wishlist")
     setToken(false);
     navigate("/");
     dispatch({ type: "LOGOUT" });
@@ -27,6 +29,7 @@ export default function Navigation() {
           />
         </Link>
       </section>
+      <button className="btn btn-outline-primary primary-text" onClick={()=>navigate("/productlist")}>Products</button>
       <section className="search-item">
         <div className="input search-field outlined ">
           <button className="search-icon">
@@ -43,15 +46,17 @@ export default function Navigation() {
             </Link>
           </li>
         )}
-        <li className="list-inline-item">
-          <div
-            className="avatar avatar-text-xs avatar-text img-round user-profile"
-            role="img"
-            alt="Avatar"
-          >
-            AB
-          </div>
-        </li>
+        {token && (
+          <li className="list-inline-item">
+            <div className="avatar avatar-xs">
+              <img
+                className="img-responsive img-round"
+                src="https://i.postimg.cc/28Zcgq1j/avatar.png"
+                alt="Avatar"
+              />
+            </div>
+          </li>
+        )}
         <li className="list-inline-item">
           <button className="badge-container badge-btn">
             <Link to="/wishlist">
@@ -65,7 +70,7 @@ export default function Navigation() {
         <li className="list-inline-item">
           <button className="badge-container badge-btn">
             <Link to="/cart">
-              <i className="fas fa-cart-shopping"></i>
+              <i className="fas fa-basket-shopping"></i>
               <span className="status-badge-icon bg-red">
                 {data.cart.length}
               </span>
