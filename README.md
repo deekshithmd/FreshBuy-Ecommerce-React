@@ -55,6 +55,25 @@
   Other features are,
     1. Remove item from wishlist
     2. Move item from wishlist to Basket/Cart
+ 
+## Installation
+
+* Clone the repository on local machine 
+  ```
+  git clone https://github.com/deekshithmd/freshbuy-ecommerce-react.git
+  
+  cd freshbuy-ecommerce-react
+  ```
+  
+* Install dependencies using package installer 
+  ```
+  npm install
+  ```
+  
+* Run the app
+  ```
+  npm start
+  ```
 
 
   
