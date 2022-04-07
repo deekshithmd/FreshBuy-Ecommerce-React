@@ -1,3 +1,7 @@
+.cart-container{
+    min-height: 67vh;
+}
+
 .cart-products {
     display: flex;
     justify-content: center;

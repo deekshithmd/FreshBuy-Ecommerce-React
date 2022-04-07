@@ -12,7 +12,7 @@ export default function Banner() {
         to="/productlist"
         className="btn btn-solid-primary link-btn link-style-none order-now"
       >
-        Shop Now
+        Shop Now <i className="fa-solid fa-angles-right"></i>
       </Link>
     </div>
   );

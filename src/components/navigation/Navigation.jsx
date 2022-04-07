@@ -12,8 +12,8 @@ export default function Navigation() {
 
   const LogoutHandler = () => {
     localStorage.removeItem("login");
-    localStorage.removeItem("cart")
-    localStorage.removeItem("wishlist")
+    localStorage.removeItem("cart");
+    localStorage.removeItem("wishlist");
     setToken(false);
     navigate("/");
     dispatch({ type: "LOGOUT" });
@@ -29,7 +29,12 @@ export default function Navigation() {
           />
         </Link>
       </section>
-      <button className="btn btn-outline-primary primary-text" onClick={()=>navigate("/productlist")}>Products</button>
+      <button
+        className="btn btn-outline-primary primary-text"
+        onClick={() => navigate("/productlist")}
+      >
+        Products
+      </button>
       <section className="search-item">
         <div className="input search-field outlined ">
           <button className="search-icon">
@@ -47,15 +52,17 @@ export default function Navigation() {
           </li>
         )}
         {token && (
-          <li className="list-inline-item">
-            <div className="avatar avatar-xs">
-              <img
-                className="img-responsive img-round"
-                src="https://i.postimg.cc/28Zcgq1j/avatar.png"
-                alt="Avatar"
-              />
-            </div>
-          </li>
+          <Link to="/profile">
+            <li className="list-inline-item">
+              <div className="avatar avatar-xs">
+                <img
+                  className="img-responsive img-round"
+                  src="https://i.postimg.cc/28Zcgq1j/avatar.png"
+                  alt="Avatar"
+                />
+              </div>
+            </li>
+          </Link>
         )}
         <li className="list-inline-item">
           <button className="badge-container badge-btn">

@@ -1,3 +1,7 @@
+.wishlist-container{
+    min-height: 67vh;
+}
+
 .wishlist-products{
     display: flex;
     flex-direction: column;

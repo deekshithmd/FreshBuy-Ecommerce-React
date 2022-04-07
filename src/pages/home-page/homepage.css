@@ -63,8 +63,8 @@
 
 .order-now{
     position: absolute;
-    left: 50%;
-    bottom: 5rem;
+    left: 90%;
+    bottom: 37%;
     transform: translateX(-50%);
 }
 

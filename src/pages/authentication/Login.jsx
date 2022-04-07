@@ -50,20 +50,6 @@ export default function Login() {
         setToken(true);
         navigate("/");
       }
-      // if (response.data.encodedToken) {
-      //   localStorage.setItem(
-      //     "login",
-      //     JSON.stringify(response.data.encodedToken)
-      //   );
-      // }
-      // if (localStorage.getItem("token") === localStorage.getItem("login")) {
-      //   setToken(true);
-      //   navigate("/");
-      //   console.log(response.data);
-      // } else {
-      //   setError(true);
-      //   navigate("/login");
-      // }
     } catch (e) {
       setError(true);
       navigate("/login");
@@ -93,7 +79,7 @@ export default function Login() {
                 <input type="checkbox" className="margin-r" name="remember" />
                 Remember me
               </label>
-              <Link to="" className="text-md forgot-pwd text-primary margin-l">
+              <Link to="/forgot" className="text-md forgot-pwd text-primary margin-l">
                 Forgot password?
               </Link>
             </section>

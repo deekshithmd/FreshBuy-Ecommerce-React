@@ -50,7 +50,7 @@ export default function Cart() {
   }
 
   return data.cart.length > 0 ? (
-    <div className="grid-container">
+    <div className="grid-container cart-container">
       <div className="cart-products">
         <section className="cart-items">
           <p className="product-page-heading text-lg text-bold">
@@ -154,8 +154,10 @@ export default function Cart() {
       </div>
     </div>
   ) : (
-    <p className="product-page-heading text-lg text-bold">
-      No product added to your Basket
-    </p>
+    <div className="cart-container">
+      <p className="product-page-heading text-lg text-bold">
+        No product added to your Basket
+      </p>
+    </div>
   );
 }

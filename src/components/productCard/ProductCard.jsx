@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
   getWishlist,
@@ -11,7 +11,10 @@ import {
 
 const ProductCard = ({ product }) => {
   const { data, dispatch } = useData();
-  const token=localStorage.getItem("login")
+
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("login");
 
   const wish = data.wishlist.some((item) => item.title === product.title)
     ? "fas fa-heart wishlisted"
@@ -64,11 +67,13 @@ const ProductCard = ({ product }) => {
           <span>
             <i
               className={wish}
-              onClick={() =>
-                wish === "far fa-heart"
-                  ? addWish(product, token)
-                  : deleteWish(product._id, token)
-              }
+              onClick={() => {
+                token
+                  ? wish === "far fa-heart"
+                    ? addWish(product, token)
+                    : deleteWish(product._id, token)
+                  : navigate("/login");
+              }}
             ></i>
           </span>
         </h2>
@@ -80,7 +85,7 @@ const ProductCard = ({ product }) => {
           (<span className="rating-number">2333</span>)
         </div>
         <h4 className="product-price">
-          Rs.{product.price}/kg
+          Rs.{product.price}/kg{" "}
           <span className="original-price text-strike-through">
             Rs.{product.price * 1.2}
           </span>
@@ -98,7 +103,9 @@ const ProductCard = ({ product }) => {
         ) : (
           <button
             className="btn btn-icon-text-primary-outline"
-            onClick={() => addCart(product, token)}
+            onClick={() => {
+              token ? addCart(product, token) : navigate("/login");
+            }}
           >
             <span className="btn-icon">
               <i className="fa fa-shopping-basket margin-r"></i>

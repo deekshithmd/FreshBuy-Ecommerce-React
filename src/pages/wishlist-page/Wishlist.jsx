@@ -37,7 +37,7 @@ export default function Wishlist() {
   }
 
   return data.wishlist.length > 0 ? (
-    <div className="grid-container">
+    <div className="grid-container wishlist-container">
       <div className="wishlist-products">
         <p className="product-page-heading text-md text-bold">
           <span className="no-items-in-wishlist">{data.wishlist.length}</span>{" "}
@@ -96,8 +96,10 @@ export default function Wishlist() {
       </div>
     </div>
   ) : (
-    <p className="product-page-heading text-lg text-bold">
-      No product wishlisted
-    </p>
+    <div className="wishlist-container">
+      <p className="product-page-heading text-lg text-bold">
+        No product wishlisted
+      </p>
+    </div>
   );
 }
