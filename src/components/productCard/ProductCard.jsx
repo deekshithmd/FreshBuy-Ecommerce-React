@@ -57,7 +57,14 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-    <div className="card-container vertical" key={product._id}>
+    <div
+      className={
+        product.outofstock
+          ? "card-container vertical overlay"
+          : "card-container vertical"
+      }
+      key={product._id}
+    >
       <div className="card-img vertical-img border-bottom">
         <img src={product.image} alt={product.title} />
       </div>
@@ -65,16 +72,20 @@ const ProductCard = ({ product }) => {
         <h2 className="card-heading">
           {product.title}
           <span>
-            <i
-              className={wish}
-              onClick={() => {
-                token
-                  ? wish === "far fa-heart"
-                    ? addWish(product, token)
-                    : deleteWish(product._id, token)
-                  : navigate("/login");
-              }}
-            ></i>
+            {product.outofstock ? (
+              <i className="far fa-heart"></i>
+            ) : (
+              <i
+                className="far fa-heart"
+                onClick={() => {
+                  token
+                    ? wish === "far fa-heart"
+                      ? addWish(product, token)
+                      : deleteWish(product._id, token)
+                    : navigate("/login");
+                }}
+              ></i>
+            )}
           </span>
         </h2>
         <div className="rating text-sm">
@@ -91,7 +102,14 @@ const ProductCard = ({ product }) => {
           </span>
           <span className="discount-percentage">{product.discount}% off</span>
         </h4>
-        {data.cart.some((item) => item.title === product.title) ? (
+        {product.outofstock ? (
+          <button className="btn btn-icon-text-primary-outline">
+            <span className="btn-icon">
+              <i className="fa fa-shopping-basket margin-r"></i>
+            </span>
+            Add to Basket
+          </button>
+        ) : data.cart.some((item) => item.title === product.title) ? (
           <Link to="/cart">
             <button className="btn btn-icon-text-primary-outline">
               <span className="btn-icon">
@@ -114,6 +132,16 @@ const ProductCard = ({ product }) => {
           </button>
         )}
       </div>
+      {product.offer && (
+        <div class="badge badge-offer 20-off">
+          <span></span>
+        </div>
+      )}
+      {product.outofstock && (
+        <span class="card-text-overlay out-of-stock">
+          <h2>Out of Stock</h2>
+        </span>
+      )}
     </div>
   );
 };
