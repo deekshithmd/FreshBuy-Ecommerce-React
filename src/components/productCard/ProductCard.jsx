@@ -76,7 +76,7 @@ const ProductCard = ({ product }) => {
               <i className="far fa-heart"></i>
             ) : (
               <i
-                className="far fa-heart"
+                className={wish}
                 onClick={() => {
                   token
                     ? wish === "far fa-heart"
