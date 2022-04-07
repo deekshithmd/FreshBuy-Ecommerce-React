@@ -1,5 +1,5 @@
 import "./authentication.css";
-import { getCredentials,getTestData } from "../../utils";
+import { getCredentials, getTestData } from "../../utils";
 import axios from "axios";
 import { useAuth } from "../../contexts";
 import { useNavigate } from "react-router-dom";
@@ -11,12 +11,9 @@ export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
 
-  const TestLogin=async()=>{
-    try{
-      const response = await axios.post(
-        "/api/auth/login",
-        getTestData()
-      );
+  const TestLogin = async () => {
+    try {
+      const response = await axios.post("/api/auth/login", getTestData());
       console.log(response.data);
       if (response.data.encodedToken) {
         localStorage.setItem(
@@ -26,12 +23,11 @@ export default function Login() {
         setToken(true);
         navigate("/");
       }
-    }
-    catch(e){
-      setError(true)
+    } catch (e) {
+      setError(true);
       navigate("/login");
     }
-  }
+  };
 
   const HandleLogin = async (event) => {
     try {
@@ -79,7 +75,10 @@ export default function Login() {
                 <input type="checkbox" className="margin-r" name="remember" />
                 Remember me
               </label>
-              <Link to="/forgot" className="text-md forgot-pwd text-primary margin-l">
+              <Link
+                to="/forgot"
+                className="text-md forgot-pwd text-primary margin-l"
+              >
                 Forgot password?
               </Link>
             </section>
@@ -89,7 +88,10 @@ export default function Login() {
               value="Login"
             />
           </form>
-          <button className="btn btn-solid-primary auth-btn margin" onClick={()=>TestLogin()}>
+          <button
+            className="btn btn-solid-primary auth-btn margin"
+            onClick={() => TestLogin()}
+          >
             Test User Login
           </button>
           <p className="text-lg">

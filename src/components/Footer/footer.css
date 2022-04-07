@@ -1,4 +1,4 @@
-.footer{
+.footer {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -12,10 +12,10 @@
     left: 0;
 }
 
-.footer-text{
+.footer-text {
     color: var(--secondary-white-text-color);
 }
 
-.footer-social-icons i{
+.footer-social-icons i {
     color: var(--secondary-white-text-color)
 }

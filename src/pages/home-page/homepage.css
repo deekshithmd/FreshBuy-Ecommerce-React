@@ -1,38 +1,38 @@
-.grid-container{
+.grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         'nav-bar'
         'product-banner'
         'hero-section'
         'main-products';
     height: auto;
     width: 100vw;
-    overflow:scroll;
+    overflow: scroll;
     overflow-x: hidden;
 }
 
-.navigation-bar{
+.navigation-bar {
     grid-area: nav-bar;
 }
 
-.hero-section{
+.hero-section {
     grid-area: hero-section;
     height: auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    overflow:auto;
+    overflow: auto;
     flex-wrap: wrap;
 }
 
-.hero-section img{
+.hero-section img {
     height: 15rem;
     width: 20rem;
     margin: 1rem;
 }
 
-.hero-container{
+.hero-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +42,7 @@
     border: 1px solid var(--primary-color);
 }
 
-.product-banner{
+.product-banner {
     position: relative;
     width: 100%;
     max-height: 60vh;
@@ -51,31 +51,31 @@
     padding: 0;
 }
 
-#slider{
+#slider {
     width: 100%;
     display: inline-flex;
     transition: 0.7s;
 }
 
-#slider img{
+#slider img {
     width: 100%;
 }
 
-.order-now{
+.order-now {
     position: absolute;
     left: 90%;
     bottom: 37%;
     transform: translateX(-50%);
 }
 
-.indicators{
+.indicators {
     position: absolute;
     left: 50%;
     bottom: 20px;
     transform: translateX(-50%);
 }
 
-.indicators span{
+.indicators span {
     display: inline-block;
     width: 15px;
     height: 15px;
@@ -85,38 +85,38 @@
     cursor: pointer;
 }
 
-.active{
+.active {
     background-color: var(--primary-color) !important;
 }
 
-.occasional-products{
+.occasional-products {
     grid-area: main-products;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         'first-item second-item third-item';
     display: flex;
     justify-content: space-evenly;
     padding: 2rem;
 }
 
-.occasional-item-1{
-    grid-area:first-item;
+.occasional-item-1 {
+    grid-area: first-item;
 }
 
-.occasional-item-2{
+.occasional-item-2 {
     grid-area: second-item;
 }
 
-.occasional-item-3{
+.occasional-item-3 {
     grid-area: third-item;
 }
 
-.flex{
+.flex {
     flex-direction: column;
 }
 
-.occasional-products img{
+.occasional-products img {
     width: 40rem;
     height: 20rem;
 }

@@ -3,7 +3,7 @@ import { Filter, ProductCard } from "../../components";
 import { useData } from "../../contexts";
 
 export default function ProductList() {
-  const {filtered } = useData();
+  const { filtered } = useData();
   return (
     <div className="grid-container-product">
       <Filter />

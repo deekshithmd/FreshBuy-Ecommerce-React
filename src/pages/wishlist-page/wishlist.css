@@ -1,26 +1,24 @@
-.wishlist-container{
+.wishlist-container {
     min-height: 67vh;
 }
 
-.wishlist-products{
+.wishlist-products {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.product-page-heading{
+.product-page-heading {
     text-align: center;
     padding: 2rem;
 }
 
-.wishlist-items{
+.wishlist-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.wishlisted{
+.wishlisted {
     color: var(--red-background);
 }
-
-

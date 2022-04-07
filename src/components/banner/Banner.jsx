@@ -3,10 +3,7 @@ export default function Banner() {
   return (
     <div className="product-banner">
       <div id="slider">
-        <img
-          src="https://i.postimg.cc/TwrgPbD7/veg-banner.png"
-          alt=""
-        />
+        <img src="https://i.postimg.cc/TwrgPbD7/veg-banner.png" alt="" />
       </div>
       <Link
         to="/productlist"

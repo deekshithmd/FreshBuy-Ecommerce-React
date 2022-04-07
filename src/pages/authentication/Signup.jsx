@@ -14,7 +14,6 @@ export default function Signup() {
     try {
       event.preventDefault();
       const { firstname, lastname, email, pass } = event.target.elements;
-      console.log("got");
       const response = await axios.post(`/api/auth/signup`, {
         firstname: firstname.value,
         lastname: lastname.value,
@@ -30,8 +29,7 @@ export default function Signup() {
         navigate("/login");
       }
     } catch (e) {
-      console.log(e);
-      console.log("signup");
+      console.error(e);
     }
   };
 

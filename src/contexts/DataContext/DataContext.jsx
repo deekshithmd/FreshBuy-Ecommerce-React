@@ -88,6 +88,7 @@ const DataProvider = ({ children }) => {
     data.fruit ||
     data.root;
 
+  //Category filters
   const allium = priceFiltered.filter((item) =>
     item.categoryName === "Allium" && data.allium ? true : false
   );
@@ -112,6 +113,7 @@ const DataProvider = ({ children }) => {
 
   const season = data.alltime || data.winter || data.summer;
 
+  //Season category filters
   const alltime = categoryfiltered.filter((item) =>
     item.season === "AllTime" && data.alltime ? true : false
   );
@@ -126,11 +128,13 @@ const DataProvider = ({ children }) => {
     ? [...alltime, ...summer, ...winter]
     : categoryfiltered;
 
+  //Rating filter
   const ratingfiltered =
     data.rating === 0
       ? seasonFiltered
       : seasonFiltered.filter((item) => item.rating > data.rating);
 
+  //Sorting
   function getSorted(product, sortBy) {
     const output =
       sortBy === null
