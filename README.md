@@ -8,6 +8,7 @@
  * [About](#about)
  * [Features](#features)
  * [Installation](#installation)
+ * [Walkthrough](#walkthrough)
  
  ## About
  FreshBuy is the ecommerce site where you can buy fruits and vegetables of your choice based on the season or your interest. Different categories provided to ease the shopping experience.
@@ -74,9 +75,7 @@
   ```
   npm start
   ```
-
-
   
+ ## Walkthrough
  
-  
- 
+![FreshBuy](https://github.com/deekshithmd/Data/blob/main/Gifs/freshbuy-ecommerce.gif)
