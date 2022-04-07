@@ -1,3 +1,4 @@
+import "./productcard.css"
 import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
@@ -103,7 +104,10 @@ const ProductCard = ({ product }) => {
           <span className="discount-percentage">{product.discount}% off</span>
         </h4>
         {product.outofstock ? (
-          <button className="btn btn-icon-text-primary-outline">
+          <button
+            class="btn btn-icon-text-primary-disabled out-of-stock-button"
+            disabled="disabled"
+          >
             <span className="btn-icon">
               <i className="fa fa-shopping-basket margin-r"></i>
             </span>
