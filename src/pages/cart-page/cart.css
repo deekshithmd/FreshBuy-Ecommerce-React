@@ -1,3 +1,7 @@
+.cart-container {
+    min-height: 67vh;
+}
+
 .cart-products {
     display: flex;
     justify-content: center;
@@ -63,7 +67,7 @@ h3 {
     transform: scale(1.07);
 }
 
-.count{
+.count {
     width: 2rem;
     text-align: center;
 }

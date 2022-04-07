@@ -46,6 +46,37 @@ export default function Filter() {
           </label>
         );
       })}
+      <p className="text-md text-bold">Seasonal</p>
+      <label className="text-md">
+        <input
+          type="checkbox"
+          name="seasonal"
+          className="margin-r"
+          checked={data.alltime === true}
+          onChange={() => dispatch({ type: "ALLTIME" })}
+        />
+        All Time
+      </label>
+      <label className="text-md">
+        <input
+          type="checkbox"
+          name="seasonal"
+          className="margin-r"
+          checked={data.summer === true}
+          onChange={() => dispatch({ type: "SUMMER" })}
+        />
+        Summer
+      </label>
+      <label className="text-md">
+        <input
+          type="checkbox"
+          name="seasonal"
+          className="margin-r"
+          checked={data.winter === true}
+          onChange={() => dispatch({ type: "WINTER" })}
+        />
+        Winter
+      </label>
       <p className="text-md text-bold">Ratings</p>
       <label className="text-md">
         <input

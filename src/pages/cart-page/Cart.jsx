@@ -9,6 +9,9 @@ import {
 
 export default function Cart() {
   const { data, dispatch, token } = useData();
+  let cartPrice = 0;
+  let cartDiscount = 0;
+  let cartQty = 0;
 
   async function incrementCart(product, tokens) {
     const responseCart = await editCartlist({
@@ -46,8 +49,8 @@ export default function Cart() {
     dispatch({ type: "LOAD_CART", payload: responseCartlist.data.cart });
   }
 
-  return (
-    <div className="grid-container">
+  return data.cart.length > 0 ? (
+    <div className="grid-container cart-container">
       <div className="cart-products">
         <section className="cart-items">
           <p className="product-page-heading text-lg text-bold">
@@ -81,7 +84,7 @@ export default function Cart() {
                     (<span className="rating-number">2333</span>)
                   </div>
                   <h4 className="product-price">
-                    Rs.{item.price}{" "}
+                    Rs.{item.price}/kg{" "}
                     <span className="original-price text-strike-through">
                       Rs.{item.price * 1.2}
                     </span>
@@ -116,29 +119,45 @@ export default function Cart() {
             );
           })}
         </section>
+
+        {data.cart.forEach((item) => {
+          cartPrice = cartPrice + item.qty * item.price;
+          cartDiscount =
+            cartDiscount + item.qty * ((item.price * item.discount) / 100);
+          cartQty = cartQty + item.qty;
+        })}
+
         <section className="item-data margin-t">
           <h3 className="text-md">Price Details</h3>
           <hr></hr>
           <p>
-            Price <span className="rate">Rs.5222</span>
+            Price <span className="rate">Rs.{cartPrice}</span>
           </p>
           <p>
-            Discount <span className="rate">-Rs.522</span>
+            Discount <span className="rate">-Rs.{cartDiscount}</span>
           </p>
           <p>
-            Delivery Charge <span className="rate">Rs.52</span>
+            Delivery Charge{" "}
+            <span className="rate">Rs.{data.cart.length * 15}</span>
           </p>
           <hr></hr>
           <h3 className="text-md">
-            Total Amount <span className="rate">Rs.1444</span>
+            Total Amount{" "}
+            <span className="rate">Rs.{cartPrice + data.cart.length * 15}</span>
           </h3>
           <hr></hr>
-          <p>You will save Rs.21 on this order</p>
+          <p>You will save Rs.{cartDiscount} on this order</p>
           <button className="btn btn-outline-primary margin-t">
             Place Order
           </button>
         </section>
       </div>
+    </div>
+  ) : (
+    <div className="cart-container">
+      <p className="product-page-heading text-lg text-bold">
+        No product added to your Basket
+      </p>
     </div>
   );
 }

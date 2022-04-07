@@ -7,7 +7,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     (async () => {
       if (localStorage.getItem("login")) {

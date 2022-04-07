@@ -4,5 +4,13 @@ import Category from "./categories/Category";
 import Occasional from "./occasional/Occasional";
 import Filter from "./filters/Filter";
 import { ProductCard } from "./productCard/ProductCard";
-
-export { Navigation, Banner, Category, Occasional, Filter, ProductCard };
+import { Footer } from "./Footer/Footer";
+export {
+  Navigation,
+  Banner,
+  Category,
+  Occasional,
+  Filter,
+  ProductCard,
+  Footer,
+};

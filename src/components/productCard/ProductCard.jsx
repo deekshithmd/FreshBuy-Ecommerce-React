@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import "./productcard.css"
+import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
   getWishlist,
@@ -10,9 +11,13 @@ import {
 } from "../../services";
 
 const ProductCard = ({ product }) => {
-  const { data, dispatch, token } = useData();
+  const { data, dispatch } = useData();
 
-  const wish = data.wishlist.some((item) => item._id === product._id)
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("login");
+
+  const wish = data.wishlist.some((item) => item.title === product.title)
     ? "fas fa-heart wishlisted"
     : "far fa-heart";
 
@@ -53,7 +58,14 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-    <div className="card-container vertical" key={product._id}>
+    <div
+      className={
+        product.outofstock
+          ? "card-container vertical overlay"
+          : "card-container vertical"
+      }
+      key={product._id}
+    >
       <div className="card-img vertical-img border-bottom">
         <img src={product.image} alt={product.title} />
       </div>
@@ -61,14 +73,20 @@ const ProductCard = ({ product }) => {
         <h2 className="card-heading">
           {product.title}
           <span>
-            <i
-              className={wish}
-              onClick={() =>
-                wish === "far fa-heart"
-                  ? addWish(product, token)
-                  : deleteWish(product._id, token)
-              }
-            ></i>
+            {product.outofstock ? (
+              <i className="far fa-heart"></i>
+            ) : (
+              <i
+                className={wish}
+                onClick={() => {
+                  token
+                    ? wish === "far fa-heart"
+                      ? addWish(product, token)
+                      : deleteWish(product._id, token)
+                    : navigate("/login");
+                }}
+              ></i>
+            )}
           </span>
         </h2>
         <div className="rating text-sm">
@@ -79,13 +97,23 @@ const ProductCard = ({ product }) => {
           (<span className="rating-number">2333</span>)
         </div>
         <h4 className="product-price">
-          Rs.{product.price}/kg
+          Rs.{product.price}/kg{" "}
           <span className="original-price text-strike-through">
             Rs.{product.price * 1.2}
           </span>
           <span className="discount-percentage">{product.discount}% off</span>
         </h4>
-        {data.cart.some((item) => item._id === product._id) ? (
+        {product.outofstock ? (
+          <button
+            class="btn btn-icon-text-primary-disabled out-of-stock-button"
+            disabled="disabled"
+          >
+            <span className="btn-icon">
+              <i className="fa fa-shopping-basket margin-r"></i>
+            </span>
+            Add to Basket
+          </button>
+        ) : data.cart.some((item) => item.title === product.title) ? (
           <Link to="/cart">
             <button className="btn btn-icon-text-primary-outline">
               <span className="btn-icon">
@@ -97,7 +125,9 @@ const ProductCard = ({ product }) => {
         ) : (
           <button
             className="btn btn-icon-text-primary-outline"
-            onClick={() => addCart(product, token)}
+            onClick={() => {
+              token ? addCart(product, token) : navigate("/login");
+            }}
           >
             <span className="btn-icon">
               <i className="fa fa-shopping-basket margin-r"></i>
@@ -106,6 +136,16 @@ const ProductCard = ({ product }) => {
           </button>
         )}
       </div>
+      {product.offer && (
+        <div class="badge badge-offer 20-off">
+          <span></span>
+        </div>
+      )}
+      {product.outofstock && (
+        <span class="card-text-overlay out-of-stock">
+          <h2>Out of Stock</h2>
+        </span>
+      )}
     </div>
   );
 };

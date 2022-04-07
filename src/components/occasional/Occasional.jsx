@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { useData } from "../../contexts";
 export default function Occasional() {
+  const { dispatch } = useData();
   return (
     <div className="occasional-products">
       <Link
@@ -11,7 +13,8 @@ export default function Occasional() {
         </span>
         <img
           src="https://i.postimg.cc/h4L1Dk8D/alltime.jpg"
-          alt=""
+          alt="Alltime"
+          onClick={() => dispatch({ type: "ALLTIME" })}
         />
       </Link>
       <Link
@@ -23,7 +26,8 @@ export default function Occasional() {
         </span>
         <img
           src="https://i.postimg.cc/8PwdWLnx/winter.jpg"
-          alt=""
+          alt="Winter"
+          onClick={() => dispatch({ type: "WINTER" })}
         />
       </Link>
       <Link
@@ -35,7 +39,8 @@ export default function Occasional() {
         </span>
         <img
           src="https://i.postimg.cc/15ycfvMp/summer.jpg"
-          alt=""
+          alt="Summer"
+          onClick={() => dispatch({ type: "SUMMER" })}
         />
       </Link>
     </div>

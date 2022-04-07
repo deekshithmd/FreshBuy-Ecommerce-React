@@ -10,11 +10,10 @@ export default function Signup() {
   const [passwordValue, setPasswordvalue] = useState();
   const [confirm, setConfirm] = useState();
 
-  const HandleSignup = async (event) => {
+  const handleSignup = async (event) => {
     try {
       event.preventDefault();
       const { firstname, lastname, email, pass } = event.target.elements;
-      console.log("got");
       const response = await axios.post(`/api/auth/signup`, {
         firstname: firstname.value,
         lastname: lastname.value,
@@ -30,8 +29,7 @@ export default function Signup() {
         navigate("/login");
       }
     } catch (e) {
-      console.log(e);
-      console.log("signup");
+      console.error(e);
     }
   };
 
@@ -56,7 +54,7 @@ export default function Signup() {
     <div className="form">
       <div className="form-data">
         <h2 className="margin-b">SignUp</h2>
-        <form onSubmit={HandleSignup}>
+        <form onSubmit={handleSignup}>
           <div className="input input-labeled outlined margin">
             <label className="label">First Name</label>
             <input
@@ -168,8 +166,8 @@ export default function Signup() {
           </section>
           <input
             type="submit"
-            className="btn btn-solid-primary margin"
-            value="Create New Account"
+            className="btn btn-solid-primary auth-btn margin margin-l-3-3"
+            value="SignUp"
           />
         </form>
       </div>
