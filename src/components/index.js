@@ -5,6 +5,7 @@ import Occasional from "./occasional/Occasional";
 import Filter from "./filters/Filter";
 import { ProductCard } from "./productCard/ProductCard";
 import { Footer } from "./Footer/Footer";
+import {SingleProduct} from "./SingleProduct/SingleProduct"
 export {
   Navigation,
   Banner,
@@ -13,4 +14,5 @@ export {
   Filter,
   ProductCard,
   Footer,
+  SingleProduct
 };

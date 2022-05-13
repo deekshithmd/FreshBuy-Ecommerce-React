@@ -14,7 +14,6 @@ export default function Login() {
   const testLogin = async () => {
     try {
       const response = await axios.post("/api/auth/login", getTestData());
-      console.log(response.data);
       if (response.data.encodedToken) {
         localStorage.setItem(
           "login",
@@ -37,7 +36,6 @@ export default function Login() {
         "/api/auth/login",
         getCredentials(email, password)
       );
-      console.log(response.data);
       if (response.data.encodedToken) {
         localStorage.setItem(
           "login",

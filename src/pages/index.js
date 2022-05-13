@@ -5,4 +5,14 @@ import Wishlist from "./wishlist-page/Wishlist";
 import Login from "./authentication/Login";
 import Signup from "./authentication/Signup";
 import Error from "./ErrorPage/ErrorPage";
-export { HomePage, ProductList, Cart, Wishlist, Login, Signup, Error };
+import SingleProductPage from "./single-product-page/Singleproduct";
+export {
+  HomePage,
+  ProductList,
+  Cart,
+  Wishlist,
+  Login,
+  Signup,
+  Error,
+  SingleProductPage,
+};

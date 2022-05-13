@@ -1,4 +1,4 @@
-import "./productcard.css";
+import "./singleproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import {
@@ -9,15 +9,17 @@ import {
   addWishlist,
   deleteWishlist,
 } from "../../services";
-
-const ProductCard = ({ product }) => {
+export const SingleProduct = ({ product }) => {
   const { data, dispatch } = useData();
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
+  const description = data.categories.map((i) =>
+    i.categoryName === product.categoryName ? i.description : ""
+  );
 
   const wish = data.wishlist.some((item) => item.title === product.title)
-    ? "fas fa-heart wishlisted"
-    : "far fa-heart";
+    ? "wishlisted"
+    : "notwishlisted";
 
   async function addWish(product, tokens) {
     const responseWishlist = await getWishlist({ encodedToken: tokens });
@@ -57,53 +59,33 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className={
-        product.outofstock
-          ? "card-container vertical overlay"
-          : "card-container vertical"
-      }
+      className={`${product.outofstock ? "overlay" : " "} single-card`}
       key={product._id}
     >
-      <div className="card-img vertical-img border-bottom">
-        <img
-          src={product.image}
-          alt={product.title}
-          onClick={() => navigate(`/singleproduct/${product._id}`)}
-        />
+      <div className="single-image">
+        <img src={product.image} alt="" />
       </div>
-      <div className="card-details card-details-vertical">
-        <h2 className="card-heading">
-          {product.title}
-          <span>
-            {product.outofstock ? (
-              <i className="far fa-heart"></i>
-            ) : (
-              <i
-                className={wish}
-                onClick={() => {
-                  token
-                    ? wish === "far fa-heart"
-                      ? addWish(product, token)
-                      : deleteWish(product._id, token)
-                    : navigate("/login");
-                }}
-              ></i>
-            )}
-          </span>
-        </h2>
+      <div className="single-details ">
+        {product.outofstock && (
+          <h2 className="text-3xl text-center">Out of Stock</h2>
+        )}
+        <h2 className="card-heading text-3xl">{product.title}</h2>
+        <p className="text-xl">{description}</p>
         <div className="rating text-sm">
           <span className="rating-value">
             {product.rating}
             <i className="fa fa-star checked margin-l"></i>
           </span>
-          (<span className="rating-number">2333</span>)
+          (<span className="rating-number text-md">2333</span>)
         </div>
-        <h4 className="product-price">
+        <h4 className="product-price text-xl">
           Rs.{product.price}/kg{" "}
-          <span className="original-price text-strike-through">
+          <span className="original-price text-strike-through text-xl">
             Rs.{product.price * 1.2}
           </span>
-          <span className="discount-percentage">{product.discount}% off</span>
+          <span className="discount-percentage text-xl">
+            {product.discount}% off
+          </span>
         </h4>
         {product.outofstock ? (
           <button
@@ -117,7 +99,7 @@ const ProductCard = ({ product }) => {
           </button>
         ) : data.cart.some((item) => item.title === product.title) ? (
           <Link to="/cart">
-            <button className="btn btn-icon-text-primary-outline">
+            <button className="single-page-btn hover">
               <span className="btn-icon">
                 <i className="fa fa-shopping-basket margin-r"></i>
               </span>
@@ -126,7 +108,7 @@ const ProductCard = ({ product }) => {
           </Link>
         ) : (
           <button
-            className="btn btn-icon-text-primary-outline"
+            className="single-page-btn hover"
             onClick={() => {
               token ? addCart(product, token) : navigate("/login");
             }}
@@ -137,19 +119,38 @@ const ProductCard = ({ product }) => {
             Add to Basket
           </button>
         )}
-      </div>
-      {product.offer && (
-        <div class="badge badge-offer 20-off">
-          <span></span>
+        <div className="wishlist-btn">
+          {product.outofstock ? (
+            <button
+              class="btn btn-icon-text-primary-disabled out-of-stock-button margin-t"
+              disabled="disabled"
+            >
+              <span className="btn-icon">
+                <i className="fa fa-shopping-basket margin-r"></i>
+              </span>
+              Add to Wishlist
+            </button>
+          ) : (
+            <button
+              className="single-page-btn hover margin-t"
+              onClick={() => {
+                token
+                  ? wish === "notwishlisted"
+                    ? addWish(product, token)
+                    : deleteWish(product._id, token)
+                  : navigate("/login");
+              }}
+            >
+              <span className="btn-icon">
+                <i className="fa fa-heart margin-r"></i>
+              </span>
+              {wish === "wishlisted"
+                ? "Remove from Wishlist"
+                : "Add to Wishlist"}
+            </button>
+          )}
         </div>
-      )}
-      {product.outofstock && (
-        <span class="card-text-overlay out-of-stock">
-          <h2>Out of Stock</h2>
-        </span>
-      )}
+      </div>
     </div>
   );
 };
-
-export { ProductCard };
