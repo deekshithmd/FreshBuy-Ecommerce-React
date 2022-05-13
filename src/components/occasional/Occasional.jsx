@@ -1,9 +1,11 @@
+import "./occasional.css"
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 export default function Occasional() {
   const { dispatch } = useData();
   return (
     <div className="occasional-products">
+      <h1 className="occasional-heading">Special Categories</h1>
       <Link
         to="/productlist"
         className="occasional-item-1 link-style-none flex"
