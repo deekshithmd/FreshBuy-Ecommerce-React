@@ -4,9 +4,10 @@ import Cart from "./cart-page/Cart";
 import Wishlist from "./wishlist-page/Wishlist";
 import Login from "./authentication/Login";
 import Signup from "./authentication/Signup";
-import Error from "./ErrorPage/ErrorPage";
+import Error from "./error-page/ErrorPage";
 import SingleProductPage from "./single-product-page/Singleproduct";
-import Profile from "./Profile/Profile";
+import Profile from "./profile-page/Profile";
+import Checkout from "./checkout-page/checkout";
 export {
   HomePage,
   ProductList,
@@ -17,4 +18,5 @@ export {
   Error,
   SingleProductPage,
   Profile,
+  Checkout,
 };

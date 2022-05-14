@@ -9,6 +9,7 @@ import {
   Error,
   SingleProductPage,
   Profile,
+  Checkout,
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { Navigation, Footer } from "../src/components";
@@ -32,6 +33,7 @@ function App() {
           element={token ? <SingleProductPage /> : <Login />}
         />
         <Route path="/profile" element={token ? <Profile /> : <Login />} />
+        <Route path="/checkout" element={token ? <Checkout /> : <Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error />} />

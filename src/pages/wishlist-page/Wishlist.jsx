@@ -15,10 +15,11 @@ export default function Wishlist() {
         <div className="grid-container wishlist-container">
           <div className="wishlist-products">
             <p className="product-page-heading text-md text-bold">
+              MY WISHLIST({" "}
               <span className="no-items-in-wishlist">
                 {data.wishlist.length}
               </span>{" "}
-              Products in your wishlist
+              )
             </p>
             <div className="wishlist-items">
               {data.wishlist.map((item) => {

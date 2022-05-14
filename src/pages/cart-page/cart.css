@@ -68,6 +68,10 @@ h3 {
     text-align: center;
 }
 
+.item-data.btn{
+    width: 50rem;
+}
+
 @media screen and (max-width:480px) {
     .cart-products {
         display: flex;

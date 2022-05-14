@@ -1,9 +1,11 @@
 import "./cart.css";
+import { useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useUserActions } from "../../hooks";
 import { Loader } from "../../components";
 export default function Cart() {
-  const { data, loading, loadText } = useData();
+  const navigate = useNavigate();
+  const { data, dispatch, loading, loadText } = useData();
   const { addWish, deleteCart, incrementCart, decrementCart } =
     useUserActions();
   let cartPrice = 0;
@@ -19,8 +21,8 @@ export default function Cart() {
           <div className="cart-products">
             <section className="cart-items">
               <p className="product-page-heading text-lg text-bold">
-                <span className="no-items-in-cart">{data.cart.length}</span>{" "}
-                Products in your Basket
+                MY BASKET({" "}
+                <span className="no-items-in-cart">{data.cart.length}</span> )
               </p>
               {data.cart.map((item) => {
                 return (
@@ -51,7 +53,7 @@ export default function Cart() {
                       <h4 className="product-price">
                         Rs.{item.price}/kg{" "}
                         <span className="original-price text-strike-through">
-                          Rs.{item.price * 1.2}
+                          Rs.{item.price * (1 + item.discount / 100)}
                         </span>
                         <span className="discount-percentage">
                           {item.discount}% off
@@ -116,8 +118,22 @@ export default function Cart() {
               </h3>
               <hr></hr>
               <p>You will save Rs.{cartDiscount} on this order</p>
-              <button className="btn btn-outline-primary margin-t">
-                Place Order
+              <button
+                className="btn btn-outline-primary margin-t"
+                onClick={() => {
+                  dispatch({
+                    type: "CART_PRICE",
+                    payload: {
+                      price: cartPrice,
+                      discount: cartDiscount,
+                      deliveryCharge: data.cart.length * 15,
+                      total: cartPrice + data.cart.length * 15,
+                    },
+                  });
+                  navigate("/checkout");
+                }}
+              >
+                Checkout
               </button>
             </section>
           </div>

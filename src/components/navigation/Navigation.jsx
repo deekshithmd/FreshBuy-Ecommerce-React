@@ -33,7 +33,7 @@ export default function Navigation() {
               alt="logo"
             />
           </Link>
-          <span className="brand-text">FreshView</span>
+          <span className="brand-text">FreshBuy</span>
         </section>
         <button
           className="btn btn-outline-primary primary-text"

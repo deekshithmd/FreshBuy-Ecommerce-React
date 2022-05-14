@@ -22,6 +22,30 @@ const DataProvider = ({ children }) => {
     cart: [],
     wishlist: [],
     categories: [],
+    address: [
+      {
+        _id: "234FSSDF76SDF",
+        name: "Deekshith M D",
+        building: "#7/21, 2nd Cross Whitefield",
+        city: "Bangalore",
+        state: "Karnataka",
+        country: "India",
+        pincode: "574066",
+        phone: "9612345653",
+      },
+      {
+        _id: "64JK3J5343J34",
+        name: "Adarsh Balika",
+        building: "#1/6 5th Cross Hampankatta",
+        city: "Mangalore",
+        state: "Karnataka",
+        country: "India",
+        pincode: "574142",
+        phone: "9645854587",
+      },
+    ],
+    cartPriceDetails: [],
+    orders:[],
     price: 200,
     rating: 0,
     sortBy: null,
@@ -71,6 +95,10 @@ const DataProvider = ({ children }) => {
         dispatch({
           type: "LOAD_WISHLIST",
           payload: wishlistResponse.data.wishlist,
+        });
+        dispatch({
+          type: "CART_PRICE",
+          payload: JSON.parse(localStorage.getItem("cart-price")),
         });
       } catch (e) {
         console.log("load", e);
