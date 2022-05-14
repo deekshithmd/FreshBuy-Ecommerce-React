@@ -1,18 +1,14 @@
 import "./singleproduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
-import {
-  getWishlist,
-  getCartlist,
-  addCartlist,
-  editCartlist,
-  addWishlist,
-  deleteWishlist,
-} from "../../services";
+import { useUserActions } from "../../hooks";
+
 export const SingleProduct = ({ product }) => {
-  const { data, dispatch } = useData();
+  const { data } = useData();
+  const { addWish, deleteWish, addCart } = useUserActions();
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
+
   const description = data.categories.map((i) =>
     i.categoryName === product.categoryName ? i.description : ""
   );
@@ -20,42 +16,6 @@ export const SingleProduct = ({ product }) => {
   const wish = data.wishlist.some((item) => item.title === product.title)
     ? "wishlisted"
     : "notwishlisted";
-
-  async function addWish(product, tokens) {
-    const responseWishlist = await getWishlist({ encodedToken: tokens });
-    if (
-      !responseWishlist.data.wishlist.find((item) => item._id === product._id)
-    ) {
-      const res = await addWishlist({ product: product, encodedToken: tokens });
-      dispatch({ type: "LOAD_WISHLIST", payload: res.data.wishlist });
-    }
-  }
-
-  async function deleteWish(productid, tokens) {
-    const responseWishlist = await deleteWishlist({
-      productId: productid,
-      encodedToken: tokens,
-    });
-    dispatch({
-      type: "LOAD_WISHLIST",
-      payload: responseWishlist.data.wishlist,
-    });
-  }
-
-  async function addCart(product, tokens) {
-    const responseCart = await getCartlist({ encodedToken: tokens });
-    if (!responseCart.data.cart.find((item) => item._id === product._id)) {
-      const res = await addCartlist({ product: product, encodedToken: tokens });
-      dispatch({ type: "LOAD_CART", payload: res.data.cart });
-    } else {
-      const res = await editCartlist({
-        productId: product._id,
-        encodedToken: tokens,
-        type: "increment",
-      });
-      dispatch({ type: "LOAD_CART", payload: res.data.cart });
-    }
-  }
 
   return (
     <div
@@ -89,7 +49,7 @@ export const SingleProduct = ({ product }) => {
         </h4>
         {product.outofstock ? (
           <button
-            class="btn btn-icon-text-primary-disabled out-of-stock-button"
+            className="btn btn-icon-text-primary-disabled out-of-stock-button"
             disabled="disabled"
           >
             <span className="btn-icon">
@@ -110,7 +70,7 @@ export const SingleProduct = ({ product }) => {
           <button
             className="single-page-btn hover"
             onClick={() => {
-              token ? addCart(product, token) : navigate("/login");
+              token ? addCart(product) : navigate("/login");
             }}
           >
             <span className="btn-icon">
@@ -122,7 +82,7 @@ export const SingleProduct = ({ product }) => {
         <div className="wishlist-btn">
           {product.outofstock ? (
             <button
-              class="btn btn-icon-text-primary-disabled out-of-stock-button margin-t"
+              className="btn btn-icon-text-primary-disabled out-of-stock-button margin-t"
               disabled="disabled"
             >
               <span className="btn-icon">
@@ -136,8 +96,8 @@ export const SingleProduct = ({ product }) => {
               onClick={() => {
                 token
                   ? wish === "notwishlisted"
-                    ? addWish(product, token)
-                    : deleteWish(product._id, token)
+                    ? addWish(product)
+                    : deleteWish(product._id)
                   : navigate("/login");
               }}
             >

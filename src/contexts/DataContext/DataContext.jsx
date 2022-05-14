@@ -8,11 +8,14 @@ import {
   addWishlist,
   addCartlist,
 } from "../../services";
+import { useState } from "react";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const token = localStorage.getItem("login");
+  const [loading, setLoading] = useState(false);
+  const [loadText, setLoadText] = useState("");
 
   const [data, dispatch] = useReducer(DataReducer, {
     products: [],
@@ -35,6 +38,8 @@ const DataProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
+      setLoadText("Loading...");
       try {
         const productResponse = await getProducts();
         dispatch({
@@ -71,6 +76,8 @@ const DataProvider = ({ children }) => {
         console.log("load", e);
       }
     })();
+    setLoadText("");
+    setLoading(false);
   }, []);
 
   const priceFiltered =
@@ -152,7 +159,18 @@ const DataProvider = ({ children }) => {
   const filtered = getSorted(ratingfiltered, data.sortBy);
 
   return (
-    <DataContext.Provider value={{ data, dispatch, token, filtered }}>
+    <DataContext.Provider
+      value={{
+        data,
+        dispatch,
+        token,
+        filtered,
+        loading,
+        setLoading,
+        loadText,
+        setLoadText,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );
