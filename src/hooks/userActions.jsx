@@ -8,9 +8,11 @@ import {
   deleteCartlist,
 } from "../../src/services";
 import { useData } from "../contexts";
+import { useToast } from "./useToast";
 
 export const useUserActions = () => {
   const { dispatch, setLoading, setLoadText } = useData();
+  const { successToast, warningToast } = useToast();
   const token = localStorage.getItem("login");
 
   async function addWish(product) {
@@ -25,6 +27,7 @@ export const useUserActions = () => {
     }
     setLoadText("");
     setLoading(false);
+    successToast("Added to Wishlist...");
   }
 
   async function deleteWish(productid) {
@@ -40,6 +43,7 @@ export const useUserActions = () => {
     });
     setLoadText("");
     setLoading(false);
+    warningToast("Removed from Wishlist...");
   }
 
   async function addCart(product) {
@@ -59,6 +63,7 @@ export const useUserActions = () => {
     }
     setLoadText("");
     setLoading(false);
+    successToast("Added to Cart...");
   }
 
   async function deleteCart(productid) {
@@ -71,6 +76,7 @@ export const useUserActions = () => {
     dispatch({ type: "LOAD_CART", payload: responseCartlist.data.cart });
     setLoadText("");
     setLoading(false);
+    warningToast("Removed from Cart...");
   }
 
   async function incrementCart(product) {

@@ -7,6 +7,7 @@ import { ProductCard } from "./productCard/ProductCard";
 import { Footer } from "./Footer/Footer";
 import { SingleProduct } from "./SingleProduct/SingleProduct";
 import { Loader } from "./Loader/Loader";
+import { Toast } from "./Toast/Toast";
 export {
   Navigation,
   Banner,
@@ -17,4 +18,5 @@ export {
   Footer,
   SingleProduct,
   Loader,
+  Toast,
 };

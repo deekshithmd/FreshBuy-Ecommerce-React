@@ -19,7 +19,8 @@
 .burger-menu,
 .profile,
 .filter-bar,
-.responsive-mode {
+.responsive-mode,
+.account {
     display: none;
 }
 
@@ -29,7 +30,7 @@
     right: 0;
     height: max-content;
     background-color: var(--light-black-background);
-    color:var(--white-text-color);
+    color: var(--white-text-color);
     width: 25rem;
     z-index: 10;
     padding: 1rem;

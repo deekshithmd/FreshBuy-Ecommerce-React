@@ -6,6 +6,7 @@ import Login from "./authentication/Login";
 import Signup from "./authentication/Signup";
 import Error from "./ErrorPage/ErrorPage";
 import SingleProductPage from "./single-product-page/Singleproduct";
+import Profile from "./Profile/Profile";
 export {
   HomePage,
   ProductList,
@@ -15,4 +16,5 @@ export {
   Signup,
   Error,
   SingleProductPage,
+  Profile,
 };

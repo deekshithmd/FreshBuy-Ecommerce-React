@@ -8,16 +8,19 @@ import {
   Signup,
   Error,
   SingleProductPage,
+  Profile,
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { Navigation, Footer } from "../src/components";
 import { useAuth } from "./contexts/AuthContext/AuthContext";
+import { useTheme } from "./contexts";
 import Mockman from "mockman-js";
 
 function App() {
   const { token } = useAuth();
+  const { theme } = useTheme();
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -28,6 +31,7 @@ function App() {
           path="/singleproduct/:productId"
           element={token ? <SingleProductPage /> : <Login />}
         />
+        <Route path="/profile" element={token ? <Profile /> : <Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error />} />

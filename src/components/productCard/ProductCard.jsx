@@ -1,13 +1,14 @@
 import "./productcard.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../contexts";
-import { useUserActions } from "../../hooks";
+import { useUserActions, useToast } from "../../hooks";
 
 const ProductCard = ({ product }) => {
   const { data } = useData();
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
   const { addWish, deleteWish, addCart } = useUserActions();
+  const { infoToast } = useToast();
 
   const wish = data.wishlist.some((item) => item.title === product.title)
     ? "fas fa-heart wishlisted"
@@ -26,7 +27,10 @@ const ProductCard = ({ product }) => {
         <img
           src={product.image}
           alt={product.title}
-          onClick={() => navigate(`/singleproduct/${product._id}`)}
+          onClick={() => {
+            navigate(`/singleproduct/${product._id}`);
+            infoToast("Entering Single Product Page...");
+          }}
         />
       </div>
       <div className="card-details card-details-vertical">

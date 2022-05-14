@@ -40,7 +40,7 @@ export const SingleProduct = ({ product }) => {
         </div>
         <h4 className="product-price text-xl">
           Rs.{product.price}/kg{" "}
-          <span className="original-price text-strike-through text-xl">
+          <span className="original-price text-strike-through text-lg">
             Rs.{product.price * 1.2}
           </span>
           <span className="discount-percentage text-xl">

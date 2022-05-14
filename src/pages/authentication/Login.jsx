@@ -2,14 +2,15 @@ import "./authentication.css";
 import { getCredentials, getTestData } from "../../utils";
 import axios from "axios";
 import { useAuth } from "../../contexts";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+import { useToast } from "../../hooks";
 
 export default function Login() {
-  const { setToken } = useAuth();
+  const { setToken, setUserData } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const { errorToast, successToast } = useToast();
 
   const testLogin = async () => {
     try {
@@ -19,11 +20,15 @@ export default function Login() {
           "login",
           JSON.stringify(response.data.encodedToken)
         );
+        localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+        setUserData(response.data.foundUser);
         setToken(true);
+        successToast("Welcome to FreshBuy...");
         navigate("/");
       }
     } catch (e) {
       setError(true);
+      errorToast("Some Error Occured while Logging in...");
       navigate("/login");
     }
   };
@@ -42,10 +47,12 @@ export default function Login() {
           JSON.stringify(response.data.encodedToken)
         );
         setToken(true);
+        successToast("Welcome to FreshBuy...");
         navigate("/");
       }
     } catch (e) {
       setError(true);
+      errorToast("Some Error Occured while Logging in...");
       navigate("/login");
     }
   };
