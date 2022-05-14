@@ -1,9 +1,13 @@
 import "./checkout.css";
 import { useData } from "../../contexts";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useUserActions } from "../../hooks";
 export default function Checkout() {
-  const { data } = useData();
-  const [address, setAddress] = useState();
+  const navigate = useNavigate();
+  const { data, dispatch } = useData();
+  const { deleteCart } = useUserActions();
+  const [deliveryAddress, setDeliveryAddress] = useState();
 
   const doPayment = () => {
     let options = {
@@ -14,7 +18,16 @@ export default function Checkout() {
       name: "FreshBuy",
       description: "Thank you for choosing FreshBuy",
       handler: function (response) {
-        alert("payment successful" + response.razorpay_payment_id);
+        dispatch({
+          type: "LOAD_ORDERS",
+          payload: {
+            items: data.cart,
+            address: deliveryAddress,
+            totalAmount: data.cartPriceDetails.total,
+            paymentId: response.razorpay_payment_id,
+          },
+        });
+        navigate("/orders");
       },
       prefill: {
         name: "Deekshith M D",
@@ -22,12 +35,13 @@ export default function Checkout() {
         contact: "7975507889",
       },
       notes: {
-        address: "Razorpay Corporate Office",
+        address: "Razorpay Carporate Office",
       },
       theme: {
         color: "#0bb32f",
       },
     };
+    data.cart.map((item) => deleteCart(item._id));
     let pay = new window.Razorpay(options);
     pay.open();
   };
@@ -43,7 +57,7 @@ export default function Checkout() {
                 <input
                   type="radio"
                   name="address"
-                  onClick={() => setAddress(addres)}
+                  onClick={() => setDeliveryAddress(addres)}
                 />
                 <div className="address-details text-md margin-l">
                   <div className="text-md text-bold">{addres.name},</div>
@@ -103,19 +117,21 @@ export default function Checkout() {
           <p>You will save Rs.{data.cartPriceDetails.discount} on this order</p>
           <hr />
 
-          {address ? (
+          {deliveryAddress ? (
             <>
               <p className="text-md text-bold">Deliver To :</p>
               <div className="address-data margin-b">
                 <div className="address-details text-md margin-l">
-                  <div className="text-md text-bold">{address.name},</div>
-                  <div>
-                    {address.building}, {address.city},
+                  <div className="text-md text-bold">
+                    {deliveryAddress.name},
                   </div>
                   <div>
-                    {address.country}, {address.pincode},
+                    {deliveryAddress.building}, {deliveryAddress.city},
                   </div>
-                  <div>{address.phone}</div>
+                  <div>
+                    {deliveryAddress.country}, {deliveryAddress.pincode},
+                  </div>
+                  <div>{deliveryAddress.phone}</div>
                 </div>
               </div>
             </>

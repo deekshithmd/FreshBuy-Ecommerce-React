@@ -13,14 +13,12 @@ export default function Wishlist() {
     <>
       {data.wishlist.length > 0 ? (
         <div className="grid-container wishlist-container">
+          <p className="product-page-heading text-md text-bold">
+            MY WISHLIST({" "}
+            <span className="no-items-in-wishlist">{data.wishlist.length}</span>{" "}
+            )
+          </p>
           <div className="wishlist-products">
-            <p className="product-page-heading text-md text-bold">
-              MY WISHLIST({" "}
-              <span className="no-items-in-wishlist">
-                {data.wishlist.length}
-              </span>{" "}
-              )
-            </p>
             <div className="wishlist-items">
               {data.wishlist.map((item) => {
                 return (
@@ -49,7 +47,8 @@ export default function Wishlist() {
                       <h4 className="product-price">
                         Rs.{item.price}/kg{" "}
                         <span className="original-price text-strike-through">
-                          Rs.{item.price * 1.2}
+                          Rs.
+                          {(item.price * (1 + item.discount / 100)).toFixed(0)}
                         </span>
                         <span className="discount-percentage">
                           {item.discount}% off

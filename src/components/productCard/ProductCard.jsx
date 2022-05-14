@@ -63,7 +63,7 @@ const ProductCard = ({ product }) => {
         <h4 className="product-price">
           Rs.{product.price}/kg{" "}
           <span className="original-price text-strike-through">
-            Rs.{product.price * 1.2}
+            Rs.{(product.price * (1 + product.discount / 100)).toFixed(0)}
           </span>
           <span className="discount-percentage">{product.discount}% off</span>
         </h4>

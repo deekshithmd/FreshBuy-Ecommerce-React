@@ -18,12 +18,12 @@ export default function Cart() {
     <>
       {data.cart.length > 0 ? (
         <div className="grid-container cart-container">
+          <p className="product-page-heading text-lg text-bold">
+            MY BASKET({" "}
+            <span className="no-items-in-cart">{data.cart.length}</span> )
+          </p>
           <div className="cart-products">
             <section className="cart-items">
-              <p className="product-page-heading text-lg text-bold">
-                MY BASKET({" "}
-                <span className="no-items-in-cart">{data.cart.length}</span> )
-              </p>
               {data.cart.map((item) => {
                 return (
                   <div className="card-container horizontal" key={item._id}>
@@ -53,7 +53,8 @@ export default function Cart() {
                       <h4 className="product-price">
                         Rs.{item.price}/kg{" "}
                         <span className="original-price text-strike-through">
-                          Rs.{item.price * (1 + item.discount / 100)}
+                          Rs.
+                          {(item.price * (1 + item.discount / 100)).toFixed(0)}
                         </span>
                         <span className="discount-percentage">
                           {item.discount}% off

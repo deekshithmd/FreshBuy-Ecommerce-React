@@ -11,6 +11,8 @@
     display: grid;
     place-items: center;
     width: 50rem;
+    height: 47rem;
+    overflow-y: scroll;
     background-color: var(--background-color);
     margin: 10px;
     padding: 2rem;

@@ -45,7 +45,7 @@ const DataProvider = ({ children }) => {
       },
     ],
     cartPriceDetails: [],
-    orders:[],
+    orders: [],
     price: 200,
     rating: 0,
     sortBy: null,
@@ -99,6 +99,11 @@ const DataProvider = ({ children }) => {
         dispatch({
           type: "CART_PRICE",
           payload: JSON.parse(localStorage.getItem("cart-price")),
+        });
+        console.log("load", JSON.parse(localStorage.getItem("orders")));
+        dispatch({
+          type: "LOAD_ORDERS",
+          payload: JSON.parse(localStorage.getItem("orders")),
         });
       } catch (e) {
         console.log("load", e);
