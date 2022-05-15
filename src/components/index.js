@@ -1,5 +1,5 @@
-import { Navigation } from "./Navigation/Navigation";
 import { Banner } from "./Banner/Banner";
+import { Navigation } from "./Navigation/Navigation";
 import { Category } from "./Categories/Category";
 import { Occasional } from "./Occasional/Occasional";
 import { Filter } from "./Filters/Filter";
