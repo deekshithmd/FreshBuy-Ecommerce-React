@@ -12,10 +12,9 @@ import {
   Checkout,
   OrderSummary,
 } from "./pages";
+import { Navigation, Footer } from "./components";
+import { useAuth, useTheme } from "./contexts";
 import { Routes, Route } from "react-router-dom";
-import { Navigation, Footer } from "../src/components";
-import { useAuth } from "./contexts/AuthContext/AuthContext";
-import { useTheme } from "./contexts";
 import Mockman from "mockman-js";
 
 function App() {
