@@ -2,6 +2,7 @@ import "./authentication.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useToast } from "../../hooks";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ export default function Signup() {
   const [password, setPassword] = useState();
   const [passwordValue, setPasswordvalue] = useState();
   const [confirm, setConfirm] = useState();
+  const { successToast, errorToast } = useToast();
 
   const handleSignup = async (event) => {
     try {
@@ -20,15 +22,16 @@ export default function Signup() {
         email: email.value,
         password: pass.value,
       });
-      console.log(response.data);
       if (response.data.encodedToken) {
         localStorage.setItem(
           "token",
           JSON.stringify(response.data.encodedToken)
         );
+        successToast("Signup Successful...");
         navigate("/login");
       }
     } catch (e) {
+      errorToast("Some error Occurred during Registration");
       console.error(e);
     }
   };

@@ -10,6 +10,18 @@ export const DataReducer = (state, action) => {
       return { ...state, cart: action.payload };
     case "LOAD_CATEGORY":
       return { ...state, categories: action.payload };
+    case "CART_PRICE":
+      localStorage.setItem("cart-price", JSON.stringify(action.payload));
+      return {
+        ...state,
+        cartPriceDetails: action.payload,
+      };
+    case "LOAD_ORDERS":
+      localStorage.setItem("orders", JSON.stringify(action.payload));
+      return {
+        ...state,
+        orders: action.payload,
+      };
     case "PRICE":
       return { ...state, price: action.payload };
     case "RATING":

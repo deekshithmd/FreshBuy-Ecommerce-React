@@ -3,5 +3,5 @@ export const getCredentials = (email, password) => {
 };
 
 export const getTestData = () => {
-  return { email: "adarshbalika@gmail.com", password: "adarshbalika" };
+  return { email: "deekshith123@freshbuy.com", password: "deekshith123" };
 };

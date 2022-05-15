@@ -1,16 +1,25 @@
 import "./productlist.css";
 import { Filter, ProductCard } from "../../components";
 import { useData } from "../../contexts";
+import { Loader } from "../../components";
 
 export default function ProductList() {
-  const { filtered } = useData();
+  const { filtered, loading, loadText } = useData();
   return (
     <div className="grid-container-product">
-      <Filter />
+      <div className="filter-grid">
+        <Filter />
+      </div>
       <div className="product-list">
-        {filtered.map((item) => {
-          return <ProductCard key={item._id} product={item} />;
-        })}
+        {loading ? (
+          <Loader text={loadText} />
+        ) : (
+          <>
+            {filtered.map((item) => {
+              return <ProductCard key={item._id} product={item} />;
+            })}
+          </>
+        )}
       </div>
     </div>
   );

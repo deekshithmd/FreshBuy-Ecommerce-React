@@ -1,3 +1,4 @@
+import "./categories.css"
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 
@@ -6,6 +7,7 @@ export default function Category() {
 
   return (
     <div className="hero-section">
+      <h1 className="categories-heading">Available Categories</h1>
       <Link to="/productlist" className="hero-container link-style-none">
         <img
           src="https://i.postimg.cc/5yB3DGgt/leafy.png"
