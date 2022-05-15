@@ -56,6 +56,7 @@
   Other features are,
     1. Remove item from wishlist
     2. Move item from wishlist to Basket/Cart
+6.
  
 ## Installation
 
