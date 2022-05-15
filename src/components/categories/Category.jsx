@@ -2,7 +2,7 @@ import "./categories.css"
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
 
-export default function Category() {
+export const Category=()=> {
   const { dispatch } = useData();
 
   return (

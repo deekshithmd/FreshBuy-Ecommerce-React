@@ -1,6 +1,6 @@
 import "./banner.css";
 import { Link } from "react-router-dom";
-export default function Banner() {
+export const Banner=()=> {
   return (
     <div className="product-banner">
       <img src="https://i.postimg.cc/TwrgPbD7/veg-banner.png" alt="" />

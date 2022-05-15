@@ -1,7 +1,7 @@
 import "./filter.css";
 import { useData } from "../../contexts";
 
-export default function Filter() {
+export const Filter = () => {
   const { data, dispatch } = useData();
 
   return (
@@ -144,4 +144,4 @@ export default function Filter() {
       </label>
     </div>
   );
-}
+};

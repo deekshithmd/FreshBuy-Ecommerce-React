@@ -1,7 +1,7 @@
 import "./occasional.css"
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts";
-export default function Occasional() {
+export const Occasional=()=> {
   const { dispatch } = useData();
   return (
     <div className="occasional-products">

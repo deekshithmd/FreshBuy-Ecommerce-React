@@ -6,7 +6,7 @@ import { Filter } from "..";
 import { useState } from "react";
 import { Toast } from "../Toast/Toast";
 
-export default function Navigation() {
+export const Navigation=()=> {
   const navigate = useNavigate();
   const { theme, toggle } = useTheme();
   const { data, dispatch } = useData();

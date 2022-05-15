@@ -100,13 +100,12 @@ const DataProvider = ({ children }) => {
           type: "CART_PRICE",
           payload: JSON.parse(localStorage.getItem("cart-price")),
         });
-        console.log("load", JSON.parse(localStorage.getItem("orders")));
         dispatch({
           type: "LOAD_ORDERS",
           payload: JSON.parse(localStorage.getItem("orders")),
         });
       } catch (e) {
-        console.log("load", e);
+        console.error("loadError", e);
       }
     })();
     setLoadText("");
