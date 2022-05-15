@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.postimg.cc/LsWYVvxT/freshbuy-logo.png" />
+  <img src="https://i.postimg.cc/66zZLP4N/freshbuy-new.png" />
 </p>
 
 # FreshBuy
