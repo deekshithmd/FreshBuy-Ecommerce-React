@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const location = useLocation();
   const [token, setToken] = useState(false);
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
@@ -14,10 +15,8 @@ const AuthProvider = ({ children }) => {
       if (localStorage.getItem("login")) {
         setToken(true);
         setUserData(JSON.parse(localStorage.getItem("user")));
-      } else if (localStorage.getItem("token")) {
-        navigate("/login");
       } else {
-        navigate("/signup");
+        navigate(location.pathname);
       }
     })();
   }, []);

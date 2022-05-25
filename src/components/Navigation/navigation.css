@@ -4,6 +4,12 @@
     top: 0;
 }
 
+.navigation-bar .btn{
+    height: 4rem;
+    margin: auto;
+    margin-left: 2rem;
+}
+
 .logo img {
     padding-right: 0;
 }
@@ -14,6 +20,10 @@
 
 .search-item input::placeholder {
     color: var(--white-text-color)
+}
+
+i:hover{
+    cursor: pointer;
 }
 
 .burger-menu,

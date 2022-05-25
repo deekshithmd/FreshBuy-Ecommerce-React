@@ -100,13 +100,12 @@ const DataProvider = ({ children }) => {
           type: "CART_PRICE",
           payload: JSON.parse(localStorage.getItem("cart-price")),
         });
-        console.log("load", JSON.parse(localStorage.getItem("orders")));
         dispatch({
           type: "LOAD_ORDERS",
           payload: JSON.parse(localStorage.getItem("orders")),
         });
       } catch (e) {
-        console.log("load", e);
+        console.error("load", e);
       }
     })();
     setLoadText("");
@@ -189,7 +188,17 @@ const DataProvider = ({ children }) => {
     return output;
   }
 
-  const filtered = getSorted(ratingfiltered, data.sortBy);
+  let filtered = getSorted(ratingfiltered, data.sortBy);
+
+  const searchProducts = (...args) => {
+    let r = filtered.filter((p) =>
+      p.title.toLowerCase().match(args[0].toLowerCase())
+    );
+    if (r.length > 0) filtered = r;
+
+    //filtered=r
+    console.log("final", r);
+  };
 
   return (
     <DataContext.Provider
@@ -202,6 +211,7 @@ const DataProvider = ({ children }) => {
         setLoading,
         loadText,
         setLoadText,
+        searchProducts,
       }}
     >
       {children}

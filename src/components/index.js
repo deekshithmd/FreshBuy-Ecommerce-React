@@ -8,6 +8,7 @@ import { Footer } from "./Footer/Footer";
 import { SingleProduct } from "./SingleProduct/SingleProduct";
 import { Loader } from "./Loader/Loader";
 import { Toast } from "./Toast/Toast";
+import { RequiresAuth } from "./RequiresAuth/RequiresAuth";
 export {
   Navigation,
   Banner,
@@ -19,4 +20,5 @@ export {
   SingleProduct,
   Loader,
   Toast,
+  RequiresAuth
 };

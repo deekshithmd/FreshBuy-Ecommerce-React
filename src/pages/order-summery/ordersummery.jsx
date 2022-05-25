@@ -3,7 +3,6 @@ import { useData } from "../../contexts";
 
 export default function OrderSummary() {
   const { data } = useData();
-  console.log("orders:", data.orders);
   return (
     <div className="order-container">
       <h1>Order Summary</h1>
