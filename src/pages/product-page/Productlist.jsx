@@ -15,7 +15,7 @@ export default function ProductList() {
           <Loader text={loadText} />
         ) : (
           <>
-            {filtered.map((item) => {
+            {filtered?.map((item) => {
               return <ProductCard key={item._id} product={item} />;
             })}
           </>

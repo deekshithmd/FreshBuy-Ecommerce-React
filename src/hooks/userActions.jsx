@@ -97,6 +97,18 @@ export const useUserActions = () => {
     dispatch({ type: "LOAD_CART", payload: responseCart.data.cart });
   }
 
+  // const getPriceFiltered = (filtered, price) => {
+  //   const o =
+  //     filtered.price === 200
+  //       ? filtered.products
+  //       : filtered.products.filter(
+  //           (item) => parseInt(item.price) <= parseInt(filtered.price)
+  //         );
+  //   dispatch({ type: "FILTERED", payload: o });
+  // };
+
+  // const getCategoryFiltered=(filtered,)
+
   return {
     addWish,
     deleteWish,

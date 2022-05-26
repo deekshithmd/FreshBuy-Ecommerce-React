@@ -63,20 +63,20 @@ export default function Cart() {
                       <span className="qty-scale text-md">
                         Quantity:
                         <button
+                          className={`dec ${
+                            item.qty <= 1 ? `disable` : undefined
+                          }`}
+                          onClick={() => decrementCart(item)}
+                        >
+                          -
+                        </button>
+                        <div className="count">{item.qty}</div>
+                        <button
                           className="inc"
                           onClick={() => incrementCart(item)}
                         >
                           +
                         </button>
-                        <div className="count">{item.qty}</div>
-                        {item.qty < 1 ? null : (
-                          <button
-                            className="dec"
-                            onClick={() => decrementCart(item)}
-                          >
-                            -
-                          </button>
-                        )}
                       </span>
                       <button
                         className="btn btn-outline-primary"

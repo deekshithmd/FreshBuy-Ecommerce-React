@@ -56,7 +56,7 @@ export default function Checkout() {
           <h1 className="text-center">Addresses</h1>
           {data.address.map((addres) => {
             return (
-              <div className="address-data margin-b" key={addres._id}>
+              <label className="address-data current margin-b" key={addres._id}>
                 <input
                   type="radio"
                   name="address"
@@ -72,7 +72,7 @@ export default function Checkout() {
                   </div>
                   <div>{addres.phone}</div>
                 </div>
-              </div>
+              </label>
             );
           })}
         </div>

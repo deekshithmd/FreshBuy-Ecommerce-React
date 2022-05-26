@@ -16,6 +16,7 @@ const DataProvider = ({ children }) => {
   const token = localStorage.getItem("login");
   const [loading, setLoading] = useState(false);
   const [loadText, setLoadText] = useState("");
+  const [searched, setSearched] = useState([]);
 
   const [data, dispatch] = useReducer(DataReducer, {
     products: [],
@@ -35,7 +36,7 @@ const DataProvider = ({ children }) => {
       },
       {
         _id: "64JK3J5343J34",
-        name: "Adarsh Balika",
+        name: "Prajwal Naliyar",
         building: "#1/6 5th Cross Hampankatta",
         city: "Mangalore",
         state: "Karnataka",
@@ -75,35 +76,37 @@ const DataProvider = ({ children }) => {
           type: "LOAD_CATEGORY",
           payload: categoryResponse.data.categories,
         });
-        const cart = JSON.parse(localStorage.getItem("cart"));
-        cart &&
-          cart.map(async (item) => {
-            await addCartlist({ product: item, encodedToken: token });
+        if (token) {
+          const cart = JSON.parse(localStorage.getItem("cart"));
+          cart &&
+            cart.map(async (item) => {
+              await addCartlist({ product: item, encodedToken: token });
+            });
+          const cartResponse = await getCartlist({ encodedToken: token });
+          dispatch({
+            type: "LOAD_CART",
+            payload: cartResponse.data.cart,
           });
-        const cartResponse = await getCartlist({ encodedToken: token });
-        dispatch({
-          type: "LOAD_CART",
-          payload: cartResponse.data.cart,
-        });
 
-        const wishlist = JSON.parse(localStorage.getItem("wishlist"));
-        wishlist &&
-          wishlist.map(async (item) => {
-            await addWishlist({ product: item, encodedToken: token });
+          const wishlist = JSON.parse(localStorage.getItem("wishlist"));
+          wishlist &&
+            wishlist.map(async (item) => {
+              await addWishlist({ product: item, encodedToken: token });
+            });
+          const wishlistResponse = await getWishlist({ encodedToken: token });
+          dispatch({
+            type: "LOAD_WISHLIST",
+            payload: wishlistResponse.data.wishlist,
           });
-        const wishlistResponse = await getWishlist({ encodedToken: token });
-        dispatch({
-          type: "LOAD_WISHLIST",
-          payload: wishlistResponse.data.wishlist,
-        });
-        dispatch({
-          type: "CART_PRICE",
-          payload: JSON.parse(localStorage.getItem("cart-price")),
-        });
-        dispatch({
-          type: "LOAD_ORDERS",
-          payload: JSON.parse(localStorage.getItem("orders")),
-        });
+          dispatch({
+            type: "CART_PRICE",
+            payload: JSON.parse(localStorage.getItem("cart-price")),
+          });
+          dispatch({
+            type: "LOAD_ORDERS",
+            payload: JSON.parse(localStorage.getItem("orders")),
+          });
+        }
       } catch (e) {
         console.error("load", e);
       }
@@ -111,6 +114,8 @@ const DataProvider = ({ children }) => {
     setLoadText("");
     setLoading(false);
   }, []);
+
+  var filtered = [];
 
   const priceFiltered =
     data.price === 200
@@ -185,20 +190,28 @@ const DataProvider = ({ children }) => {
               return parseInt(b.price) - parseInt(a.price);
             else return parseFloat(b.rating) - parseFloat(a.rating);
           });
+    filtered = output;
     return output;
   }
 
-  let filtered = getSorted(ratingfiltered, data.sortBy);
+  let sorted = getSorted(ratingfiltered, data.sortBy);
 
   const searchProducts = (...args) => {
-    let r = filtered.filter((p) =>
-      p.title.toLowerCase().match(args[0].toLowerCase())
-    );
-    if (r.length > 0) filtered = r;
+    var result =
+      args[0] === " "
+        ? sorted
+        : sorted.filter((p) =>
+            p.title.toLowerCase().match(args[0].toLowerCase())
+          );
 
-    //filtered=r
-    console.log("final", r);
+    if (result.length > 0) setSearched(result);
+    else setSearched([]);
   };
+
+  filtered =
+    searched.length === 0 || searched.length === data.products.length
+      ? filtered
+      : searched;
 
   return (
     <DataContext.Provider

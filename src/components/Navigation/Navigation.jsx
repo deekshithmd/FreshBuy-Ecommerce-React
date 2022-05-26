@@ -99,8 +99,8 @@ export default function Navigation() {
               <i
                 className={
                   theme === "light-theme"
-                    ? "fas fa-sun nav-icon"
-                    : "fas fa-moon nav-icon"
+                    ? "fas fa-moon nav-icon"
+                    : "fas fa-sun nav-icon"
                 }
                 onClick={() => toggle()}
               ></i>
@@ -182,8 +182,8 @@ export default function Navigation() {
               <i
                 className={
                   theme === "light-theme"
-                    ? "fas fa-sun nav-icon"
-                    : "fas fa-moon nav-icon"
+                    ? "fas fa-moon nav-icon"
+                    : "fas fa-sun nav-icon"
                 }
                 onClick={() => toggle()}
               ></i>
