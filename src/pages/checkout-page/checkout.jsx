@@ -2,12 +2,11 @@ import "./checkout.css";
 import { useData } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useUserActions, useToast } from "../../hooks";
+import { useToast } from "../../hooks";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const { data, dispatch } = useData();
-  const { deleteCart } = useUserActions();
   const { warningToast, successToast } = useToast();
   const [deliveryAddress, setDeliveryAddress] = useState();
 
@@ -44,7 +43,6 @@ export default function Checkout() {
         color: "#0bb32f",
       },
     };
-    data.cart.map((item) => deleteCart(item._id));
     let pay = new window.Razorpay(options);
     pay.open();
   };
