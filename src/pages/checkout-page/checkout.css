@@ -45,6 +45,7 @@
     align-items: center;
     padding: 2rem 1rem;
     border: 2px solid var(--border-black);
+    display: none;
 }
 
 .order-detail {
@@ -56,6 +57,10 @@
 .coupon-btn {
     position: absolute;
     right: 3rem
+}
+
+.current:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width:480px) {

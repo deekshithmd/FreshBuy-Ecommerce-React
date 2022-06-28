@@ -1,27 +1,36 @@
 import "./navigation.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth, useData, useTheme } from "../../contexts";
 import { Filter } from "..";
 import { useState } from "react";
 import { Toast } from "../Toast/Toast";
 
 export default function Navigation() {
+  const location = useLocation();
   const navigate = useNavigate();
   const { theme, toggle } = useTheme();
-  const { data, dispatch } = useData();
+  const { data, dispatch, searchProducts } = useData();
   const { token, setToken } = useAuth();
   const [showData, setShowData] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
 
   const logoutHandler = () => {
-    localStorage.removeItem("login");
-    localStorage.removeItem("cart");
-    localStorage.removeItem("wishlist");
+    localStorage.clear();
     setToken(false);
     navigate("/");
     dispatch({ type: "LOGOUT" });
   };
+
+  const debounce = (cb) => {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => cb.call(this, ...args), 300);
+    };
+  };
+
+  const process = debounce((query) => searchProducts(query));
 
   return (
     <>
@@ -34,13 +43,13 @@ export default function Navigation() {
             />
           </Link>
           <span className="brand-text">FreshBuy</span>
+          <button
+            className="btn btn-outline-primary primary-text"
+            onClick={() => navigate("/productlist")}
+          >
+            Products
+          </button>
         </section>
-        <button
-          className="btn btn-outline-primary primary-text"
-          onClick={() => navigate("/productlist")}
-        >
-          Products
-        </button>
         <div className="responsive-navbar">
           <div
             className="avatar avatar-xs margin-b profile"
@@ -90,8 +99,8 @@ export default function Navigation() {
               <i
                 className={
                   theme === "light-theme"
-                    ? "fas fa-sun nav-icon"
-                    : "fas fa-moon nav-icon"
+                    ? "fas fa-moon nav-icon"
+                    : "fas fa-sun nav-icon"
                 }
                 onClick={() => toggle()}
               ></i>
@@ -112,14 +121,21 @@ export default function Navigation() {
             </div>
           )}
         </div>
-        <section className="search-item">
-          <div className="input search-field outlined ">
-            <button className="search-icon">
-              <i className="fa fa-search"></i>
-            </button>
-            <input type="text" name="username" placeholder="Search here..." />
+        {location.pathname === "/productlist" && (
+          <div className="search-item">
+            <div className="input search-field outlined ">
+              <button className="search-icon">
+                <i className="fa fa-search"></i>
+              </button>
+              <input
+                type="text"
+                onChange={(e) => process(e.target.value)}
+                name="username"
+                placeholder="Search here..."
+              />
+            </div>
           </div>
-        </section>
+        )}
         <ul className="list-style-none account-data">
           {!token && (
             <li className="list-inline-item">
@@ -166,8 +182,8 @@ export default function Navigation() {
               <i
                 className={
                   theme === "light-theme"
-                    ? "fas fa-sun nav-icon"
-                    : "fas fa-moon nav-icon"
+                    ? "fas fa-moon nav-icon"
+                    : "fas fa-sun nav-icon"
                 }
                 onClick={() => toggle()}
               ></i>

@@ -10,11 +10,9 @@ export default function Profile() {
   const { successToast } = useToast();
 
   const logoutHandler = () => {
-    localStorage.removeItem("login");
-    localStorage.removeItem("cart");
-    localStorage.removeItem("wishlist");
+    localStorage.clear();
     setToken(false);
-    successToast("Succefully Logged Out...");
+    successToast("Succesfully Logged Out...");
     navigate("/");
     dispatch({ type: "LOGOUT" });
   };

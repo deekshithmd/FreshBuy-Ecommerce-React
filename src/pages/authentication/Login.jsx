@@ -5,8 +5,10 @@ import { useAuth } from "../../contexts";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "../../hooks";
+import { useLocation } from "react-router-dom";
 
 export default function Login() {
+  const location = useLocation();
   const { setToken, setUserData } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -24,7 +26,7 @@ export default function Login() {
         setUserData(response.data.foundUser);
         setToken(true);
         successToast("Welcome to FreshBuy...");
-        navigate("/");
+        navigate(location?.state?.from?.pathname || "/");
       }
     } catch (e) {
       setError(true);
@@ -48,7 +50,7 @@ export default function Login() {
         );
         setToken(true);
         successToast("Welcome to FreshBuy...");
-        navigate("/");
+        navigate(location?.state?.from?.pathname || "/");
       }
     } catch (e) {
       setError(true);

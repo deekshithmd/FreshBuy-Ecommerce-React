@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 
 /**
  * Product Database can be added here.
@@ -7,7 +6,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    _id: uuid(),
+    _id: "1OIOPIO1",
     title: "Apple",
     categoryName: "Fruit",
     season: "AllTime",
@@ -19,7 +18,7 @@ export const products = [
     image: "https://i.postimg.cc/JntSV1Hz/apple.png",
   },
   {
-    _id: uuid(),
+    _id: "2AGJGHJG2",
     title: "Onion",
     categoryName: "Allium",
     season: "AllTime",
@@ -31,7 +30,7 @@ export const products = [
     image: "https://i.postimg.cc/Jng0m2sb/onion.png",
   },
   {
-    _id: uuid(),
+    _id: "3SDFDFGFDG2",
     title: "Garlic",
     categoryName: "Allium",
     season: "AllTime",
@@ -43,7 +42,7 @@ export const products = [
     image: "https://i.postimg.cc/x1yXH5Z2/garlic.png",
   },
   {
-    _id: uuid(),
+    _id: "4JKHYUYU4",
     title: "Brocolli",
     categoryName: "Cruciferous",
     season: "Winter",
@@ -55,7 +54,7 @@ export const products = [
     image: "https://i.postimg.cc/J7D5fy0k/brocolli.png",
   },
   {
-    _id: uuid(),
+    _id:"5YURTYTY5",
     title: "Cualiflower",
     categoryName: "Cruciferous",
     season: "AllTime",
@@ -67,7 +66,7 @@ export const products = [
     image: "https://i.postimg.cc/cCn7wz2m/cualiflower.png",
   },
   {
-    _id: uuid(),
+    _id: "6TYTUTYU6",
     title: "Pinapple",
     categoryName: "Fruit",
     season: "Winter",
@@ -79,7 +78,7 @@ export const products = [
     image: "https://i.postimg.cc/gcX1g2PM/pinapple.png",
   },
   {
-    _id: uuid(),
+    _id: "7ERTTYRTY7",
     title: "Mint",
     categoryName: "Leafy",
     season: "AllTime",
@@ -91,7 +90,7 @@ export const products = [
     image: "https://i.postimg.cc/xCbg3qbM/mint.png",
   },
   {
-    _id: uuid(),
+    _id: "8DGFHHJ8",
     title: "Spinach",
     categoryName: "Leafy",
     season: "AllTime",
@@ -103,7 +102,7 @@ export const products = [
     image: "https://i.postimg.cc/T1M07GrS/spinach.png",
   },
   {
-    _id: uuid(),
+    _id: "9YUYYIYY9",
     title: "Pumpkin",
     categoryName: "Marrow",
     season: "Summer",
@@ -115,7 +114,7 @@ export const products = [
     image: "https://i.postimg.cc/XNQxKKT9/pumpkin.png",
   },
   {
-    _id: uuid(),
+    _id: "10WEERXC10",
     title: "Cucumber",
     categoryName: "Marrow",
     season: "AllTime",
@@ -127,7 +126,7 @@ export const products = [
     image: "https://i.postimg.cc/MHPDWxy9/cucumber.png",
   },
   {
-    _id: uuid(),
+    _id: "02RTTYTY02",
     title: "Beetroot",
     categoryName: "Root",
     season: "Summer",
@@ -139,7 +138,7 @@ export const products = [
     image: "https://i.postimg.cc/htxjnsnm/beetroot.png",
   },
   {
-    _id: uuid(),
+    _id: "03DFHTTRY03",
     title: "Strawberry",
     categoryName: "Fruit",
     season: "Winter",
@@ -151,7 +150,7 @@ export const products = [
     image: "https://i.postimg.cc/15D2Z7Xw/stawberry.png",
   },
   {
-    _id: uuid(),
+    _id: "04UIUOUO04",
     title: "Banana",
     categoryName: "Fruit",
     season: "AllTime",
@@ -163,7 +162,7 @@ export const products = [
     image: "https://i.postimg.cc/668xFhCf/banana.png",
   },
   {
-    _id: uuid(),
+    _id: "05RTYRTY05",
     title: "Grapes",
     categoryName: "Fruit",
     season: "Summer",
@@ -175,7 +174,7 @@ export const products = [
     image: "https://i.postimg.cc/XNt6Wy8S/grape.png",
   },
   {
-    _id: uuid(),
+    _id: "06TVCFDG06",
     title: "Leeks",
     categoryName: "Allium",
     season: "Winter",
@@ -187,7 +186,7 @@ export const products = [
     image: "https://i.postimg.cc/mkHDry9K/leek.png",
   },
   {
-    _id: uuid(),
+    _id: "07ERDFGDFG07",
     title: "Avacado",
     categoryName: "Fruit",
     season: "Winter",
@@ -199,7 +198,7 @@ export const products = [
     image: "https://i.postimg.cc/rpVvjG8W/avacado.png",
   },
   {
-    _id: uuid(),
+    _id: "08TYTRVGB08",
     title: "Pappaya",
     categoryName: "Fruit",
     season: "Alltime",
@@ -211,7 +210,7 @@ export const products = [
     image: "https://i.postimg.cc/Kc6wwhGm/papaya.png",
   },
   {
-    _id: uuid(),
+    _id: "09TYFFGHG09",
     title: "Dragon Fruit",
     categoryName: "Fruit",
     season: "Winter",
@@ -223,7 +222,7 @@ export const products = [
     image: "https://i.postimg.cc/65RJp5j7/dragon-fruit.png",
   },
   {
-    _id: uuid(),
+    _id: "20FDGVDF20",
     title: "Watermelon",
     categoryName: "Fruit",
     season: "Summer",
@@ -235,7 +234,7 @@ export const products = [
     image: "https://i.postimg.cc/W1nydDM4/watermelon.png",
   },
   {
-    _id: uuid(),
+    _id: "21SFERE22",
     title: "Mango",
     categoryName: "Fruit",
     season: "Summer",

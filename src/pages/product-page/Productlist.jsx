@@ -5,6 +5,7 @@ import { Loader } from "../../components";
 
 export default function ProductList() {
   const { filtered, loading, loadText } = useData();
+
   return (
     <div className="grid-container-product">
       <div className="filter-grid">
@@ -15,7 +16,7 @@ export default function ProductList() {
           <Loader text={loadText} />
         ) : (
           <>
-            {filtered.map((item) => {
+            {filtered?.map((item) => {
               return <ProductCard key={item._id} product={item} />;
             })}
           </>

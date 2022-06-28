@@ -1,9 +1,10 @@
 import "./productcard.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useData } from "../../contexts";
 import { useUserActions, useToast } from "../../hooks";
 
 const ProductCard = ({ product }) => {
+  const location = useLocation();
   const { data } = useData();
   const navigate = useNavigate();
   const token = localStorage.getItem("login");
@@ -47,7 +48,7 @@ const ProductCard = ({ product }) => {
                     ? wish === "far fa-heart"
                       ? addWish(product)
                       : deleteWish(product._id)
-                    : navigate("/login");
+                    : navigate("/login", { state: { from: location } });
                 }}
               ></i>
             )}
@@ -90,7 +91,9 @@ const ProductCard = ({ product }) => {
           <button
             className="btn btn-icon-text-primary-outline"
             onClick={() => {
-              token ? addCart(product, token) : navigate("/login");
+              token
+                ? addCart(product, token)
+                : navigate("/login", { state: { from: location } });
             }}
           >
             <span className="btn-icon">

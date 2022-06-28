@@ -16,7 +16,8 @@
     grid-area: main-product;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 3px;
     padding: 10px;
     min-height: 85vh;
 }

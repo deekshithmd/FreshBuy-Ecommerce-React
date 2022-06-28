@@ -1,9 +1,16 @@
 import "./ordersummery.css";
 import { useData } from "../../contexts";
+import { useEffect } from "react";
+import { useUserActions } from "../../hooks";
 
 export default function OrderSummary() {
   const { data } = useData();
-  console.log("orders:", data.orders);
+  const { deleteCart } = useUserActions();
+
+  useEffect(() => {
+    data.cart.map((item) => deleteCart(item._id));
+  }, []);
+
   return (
     <div className="order-container">
       <h1>Order Summary</h1>

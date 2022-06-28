@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 
 /**
  * Category Database can be added here.
@@ -7,37 +6,37 @@ import { v4 as uuid } from "uuid";
 
 export const categories = [
   {
-    _id: uuid(),
+    _id: "CAT13423",
     categoryName: "Allium",
     description:
       "Organically grown fresh allium vegetables",
   },
   {
-    _id: uuid(),
+    _id: "CAT2454",
     categoryName: "Fruit",
     description:
       "Organically grown fresh fruits",
   },
   {
-    _id: uuid(),
+    _id: "CAT3554",
     categoryName: "Leafy",
     description:
       "Organically grown fresh leafy vegetables",
   },
   {
-    _id: uuid(),
+    _id: "CAT4678",
     categoryName: "Cruciferous",
     description:
       "Organically grown fresh cruciferous vegetables",
   },
   {
-    _id: uuid(),
+    _id: "CAT5090",
     categoryName: "Marrow",
     description:
       "Organically grown fresh marrow vegetables",
   },
   {
-    _id: uuid(),
+    _id: "CAT6435",
     categoryName: "Root",
     description:
       "Organically grown fresh root vegetables",

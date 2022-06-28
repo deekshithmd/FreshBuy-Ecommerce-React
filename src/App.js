@@ -12,13 +12,12 @@ import {
   Checkout,
   OrderSummary,
 } from "./pages";
-import { Navigation, Footer } from "./components";
-import { useAuth, useTheme } from "./contexts";
+import { Navigation, Footer, RequiresAuth } from "./components";
+import { useTheme } from "./contexts";
 import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
 
 function App() {
-  const { token } = useAuth();
   const { theme } = useTheme();
   return (
     <div className={`App ${theme}`}>
@@ -26,15 +25,50 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/productlist" element={<ProductList />} />
-        <Route path="/cart" element={token ? <Cart /> : <Login />} />
-        <Route path="/wishlist" element={token ? <Wishlist /> : <Login />} />
+        <Route
+          path="/cart"
+          element={
+            <RequiresAuth>
+              <Cart />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <RequiresAuth>
+              <Wishlist />
+            </RequiresAuth>
+          }
+        />
         <Route
           path="/singleproduct/:productId"
-          element={token ? <SingleProductPage /> : <Login />}
+          element={<SingleProductPage />}
         />
-        <Route path="/profile" element={token ? <Profile /> : <Login />} />
-        <Route path="/checkout" element={token ? <Checkout /> : <Login />} />
-        <Route path="/orders" element={token ? <OrderSummary /> : <Login />} />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <RequiresAuth>
+              <OrderSummary />
+            </RequiresAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error />} />
